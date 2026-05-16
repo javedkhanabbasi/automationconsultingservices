@@ -1,5 +1,4 @@
 export const dynamic = 'force-dynamic';
-import { redirect } from 'next/navigation';
 import { createClient } from '@/lib/supabase/server';
 import AdminSidebar from '@/components/admin/AdminSidebar';
 
@@ -15,7 +14,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
   return (
     <div className="min-h-screen bg-white">
       {user && <AdminSidebar userEmail={user.email} />}
-      <main className={user ? 'lg:ml-64' : ''}>
+      <main className={user ? 'lg:ml-64 pt-14 lg:pt-0' : ''}>
         {children}
       </main>
     </div>
