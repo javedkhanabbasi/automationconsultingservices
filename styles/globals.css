@@ -1,0 +1,123 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-lime: #9ccc65;
+    --color-lime-dark: #7ed957;
+    --color-white: #ffffff;
+    --color-black: #000000;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--color-white);
+    color: var(--color-black);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  ::selection {
+    background: var(--color-lime);
+    color: var(--color-black);
+  }
+}
+
+@layer components {
+  .container-x {
+    @apply max-w-container mx-auto px-6 lg:px-8;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center gap-2 bg-lime text-black px-6 py-3 rounded-md text-sm font-semibold hover:bg-lime-dark transition-colors;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center gap-2 bg-white text-black px-6 py-3 rounded-md text-sm font-semibold border border-black hover:bg-black hover:text-white transition-colors;
+  }
+
+  .btn-dark {
+    @apply inline-flex items-center gap-2 bg-black text-white px-6 py-3 rounded-md text-sm font-semibold hover:bg-ink-90 transition-colors;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 text-black px-6 py-3 rounded-md text-sm font-semibold border border-ink-20 hover:bg-ink-5 transition-colors;
+  }
+
+  .btn-on-dark {
+    @apply inline-flex items-center gap-2 bg-white text-black px-6 py-3 rounded-md text-sm font-semibold hover:bg-lime transition-colors;
+  }
+
+  .eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.14em] text-black;
+  }
+
+  .eyebrow-light {
+    @apply text-xs font-semibold uppercase tracking-[0.14em] text-lime;
+  }
+
+  .section-padding {
+    @apply py-16 lg:py-24;
+  }
+
+  .hairline {
+    @apply border-t border-ink-10;
+  }
+
+  .card {
+    @apply bg-white border border-ink-10 rounded-xl;
+  }
+
+  .card-dark {
+    @apply bg-black text-white rounded-xl;
+  }
+
+  .card-lime {
+    @apply bg-lime text-black rounded-xl;
+  }
+}
+
+/* Particle background — matches client's existing site (only animation on entire site) */
+.particles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--color-lime);
+  opacity: 0;
+  animation-name: particleFloat;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  box-shadow: 0 0 8px rgba(156, 204, 101, 0.6);
+}
+
+@keyframes particleFloat {
+  0% {
+    transform: translateY(0) translateX(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.7;
+  }
+  90% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(-100vh) translateX(30px);
+    opacity: 0;
+  }
+}
