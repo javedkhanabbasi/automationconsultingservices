@@ -73,18 +73,19 @@ export default function HomePage() {
         {/* HERO */}
         <section className="bg-black text-white relative overflow-hidden">
           <Particles />
-          <div className="container-x py-24 lg:py-32 relative z-10">
-            <div className="grid lg:grid-cols-12 gap-12 items-center">
+          <div className="container-x py-20 lg:py-32 relative z-10">
+            <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+              {/* LEFT — text */}
               <div className="lg:col-span-7">
                 <div className="inline-flex items-center gap-2 mb-6 px-3 py-1.5 rounded-full border border-lime/40 bg-lime/10">
                   <span className="w-1.5 h-1.5 rounded-full bg-lime" />
                   <span className="text-xs font-semibold text-lime uppercase tracking-wider">Operations infrastructure for $1M-$10M operators</span>
                 </div>
-                <h1 className="text-5xl lg:text-7xl font-bold text-white leading-[1.02] tracking-tight mb-7">
+                <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white leading-[1.02] tracking-tight mb-7">
                   Engineering discipline.<br />
                   <span className="text-lime">Applied to your operations.</span>
                 </h1>
-                <p className="text-lg lg:text-xl text-white/80 leading-relaxed mb-9 max-w-2xl">
+                <p className="text-base lg:text-xl text-white/80 leading-relaxed mb-9 max-w-2xl">
                   We build CRM systems, workflow infrastructure, and integration architecture for $1M-$10M operators who need their back office to scale faster than their headcount.
                 </p>
                 <div className="flex flex-wrap gap-3 mb-10">
@@ -98,11 +99,10 @@ export default function HomePage() {
                 </div>
               </div>
 
-              {/* RIGHT — Workflow Diagram */}
-              <div className="lg:col-span-5">
+              {/* RIGHT — Workflow Diagram (hidden on mobile) */}
+              <div className="hidden lg:block lg:col-span-5">
                 <WorkflowDiagram />
               </div>
-
             </div>
           </div>
         </section>
@@ -110,15 +110,15 @@ export default function HomePage() {
         {/* STATS */}
         <section className="bg-white border-b border-ink-10">
           <div className="container-x py-10">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6 text-center">
               {[
                 { val: siteConfig.stats.workflows, label: 'Workflows shipped' },
                 { val: siteConfig.stats.hoursReclaimed, label: 'Hours reclaimed' },
                 { val: siteConfig.stats.clientSavings, label: 'Client savings' },
                 { val: siteConfig.stats.industries, label: 'Industries served' },
               ].map((s) => (
-                <div key={s.label} className="rounded-2xl border border-[#9CCC65]/50 p-6 transition-all duration-300 hover:border-[#9CCC65] hover:bg-[#9CCC65]/10 hover:shadow-lg hover:-translate-y-1">
-                  <div className="text-4xl font-bold text-[#9CCC65]">{s.val}</div>
+                <div key={s.label} className="rounded-2xl border border-[#9CCC65]/50 p-4 lg:p-6 transition-all duration-300 hover:border-[#9CCC65] hover:bg-[#9CCC65]/10 hover:shadow-lg hover:-translate-y-1">
+                  <div className="text-3xl lg:text-4xl font-bold text-[#9CCC65]">{s.val}</div>
                   <div className="text-xs text-ink-60 uppercase tracking-wider mt-1 font-semibold">{s.label}</div>
                 </div>
               ))}
