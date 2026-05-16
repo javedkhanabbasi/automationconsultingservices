@@ -81,10 +81,10 @@ export default function MediaLibraryClient() {
   };
 
   return (
-    <div className="p-8 lg:p-12 max-w-7xl">
-      <div className="flex items-center justify-between mb-8 gap-4 flex-wrap">
+    <div className="p-4 sm:p-8 lg:p-12 max-w-7xl">
+      <div className="flex items-center justify-between mb-6 sm:mb-8 gap-4 flex-wrap">
         <div>
-          <h1 className="text-3xl font-bold text-black mb-1">Media library</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold text-black mb-1">Media library</h1>
           <p className="text-ink-60 text-sm">{items.length} files</p>
         </div>
         <button
@@ -107,12 +107,12 @@ export default function MediaLibraryClient() {
       {loading ? (
         <div className="card p-12 text-center text-ink-50">Loading...</div>
       ) : items.length > 0 ? (
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-3 sm:gap-4">
           {items.map((item) => (
             <div key={item.id} className="card overflow-hidden group">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={item.url} alt={item.alt_text || item.original_name} className="w-full aspect-square object-cover" />
-              <div className="p-3">
+              <div className="p-2 sm:p-3">
                 <div className="text-xs font-semibold text-black truncate mb-1">{item.original_name}</div>
                 <div className="text-[10px] text-ink-50 mb-2">{formatSize(item.size_bytes)}</div>
                 <input
@@ -135,7 +135,7 @@ export default function MediaLibraryClient() {
           ))}
         </div>
       ) : (
-        <div className="card p-12 text-center">
+        <div className="card p-8 sm:p-12 text-center">
           <div className="text-4xl mb-3">📁</div>
           <h3 className="text-lg font-bold text-black mb-2">No media yet</h3>
           <p className="text-ink-60 text-sm mb-5">Upload your first image to get started.</p>

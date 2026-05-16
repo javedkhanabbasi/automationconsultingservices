@@ -52,6 +52,7 @@ export default function LoginForm() {
           required
           className="w-full px-4 py-3 border border-ink-20 rounded-md text-black focus:border-black focus:outline-none"
           autoComplete="email"
+          inputMode="email"
         />
       </div>
 

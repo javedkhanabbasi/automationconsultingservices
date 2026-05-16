@@ -6,23 +6,23 @@ export default async function SettingsPage() {
   const { data: { user } } = await supabase.auth.getUser();
 
   return (
-    <div className="p-8 lg:p-12 max-w-5xl">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-black mb-1">Settings</h1>
+    <div className="p-4 sm:p-8 lg:p-12 max-w-5xl">
+      <div className="mb-6 sm:mb-8">
+        <h1 className="text-2xl sm:text-3xl font-bold text-black mb-1">Settings</h1>
         <p className="text-ink-60 text-sm">Account and site settings.</p>
       </div>
 
-      <div className="space-y-6">
-        <div className="card p-6">
-          <h2 className="text-lg font-bold text-black mb-5">Your account</h2>
+      <div className="space-y-4 sm:space-y-6">
+        <div className="card p-4 sm:p-6">
+          <h2 className="text-lg font-bold text-black mb-4 sm:mb-5">Your account</h2>
           <div className="space-y-3">
             <div>
               <div className="text-xs font-bold text-black uppercase tracking-wider mb-1">Email</div>
-              <div className="text-sm text-ink-70">{user?.email}</div>
+              <div className="text-sm text-ink-70 break-all">{user?.email}</div>
             </div>
             <div>
               <div className="text-xs font-bold text-black uppercase tracking-wider mb-1">User ID</div>
-              <div className="text-xs text-ink-50 font-mono">{user?.id}</div>
+              <div className="text-xs text-ink-50 font-mono break-all">{user?.id}</div>
             </div>
             <div>
               <div className="text-xs font-bold text-black uppercase tracking-wider mb-1">Last sign in</div>
@@ -31,39 +31,39 @@ export default async function SettingsPage() {
           </div>
         </div>
 
-        <div className="card p-6">
-          <h2 className="text-lg font-bold text-black mb-5">Password</h2>
+        <div className="card p-4 sm:p-6">
+          <h2 className="text-lg font-bold text-black mb-4 sm:mb-5">Password</h2>
           <p className="text-sm text-ink-60 mb-4">To change your password, sign out and use the password reset flow from the login page. Or update directly in the Supabase dashboard under Authentication → Users.</p>
           <a href="https://supabase.com/dashboard" target="_blank" rel="noopener noreferrer" className="btn-ghost text-sm">
             Open Supabase dashboard →
           </a>
         </div>
 
-        <div className="card p-6">
-          <h2 className="text-lg font-bold text-black mb-5">Add admin users</h2>
+        <div className="card p-4 sm:p-6">
+          <h2 className="text-lg font-bold text-black mb-4 sm:mb-5">Add admin users</h2>
           <p className="text-sm text-ink-60 mb-4">New admin users are added through the Supabase dashboard. Go to Authentication → Users → Add User. They will receive an email invite and can log in here once they set their password.</p>
           <a href="https://supabase.com/dashboard" target="_blank" rel="noopener noreferrer" className="btn-ghost text-sm">
             Manage users in Supabase →
           </a>
         </div>
 
-        <div className="card p-6">
-          <h2 className="text-lg font-bold text-black mb-5">Site info</h2>
+        <div className="card p-4 sm:p-6">
+          <h2 className="text-lg font-bold text-black mb-4 sm:mb-5">Site info</h2>
           <div className="space-y-3">
-            <div className="flex justify-between text-sm">
-              <span className="text-ink-60">Domain</span>
-              <span className="text-black font-semibold">automationconsultingservices.org</span>
+            <div className="flex justify-between text-sm gap-4">
+              <span className="text-ink-60 shrink-0">Domain</span>
+              <span className="text-black font-semibold text-right">automationconsultingservices.org</span>
             </div>
-            <div className="flex justify-between text-sm">
-              <span className="text-ink-60">Framework</span>
+            <div className="flex justify-between text-sm gap-4">
+              <span className="text-ink-60 shrink-0">Framework</span>
               <span className="text-black font-semibold">Next.js 14 (App Router)</span>
             </div>
-            <div className="flex justify-between text-sm">
-              <span className="text-ink-60">Database</span>
+            <div className="flex justify-between text-sm gap-4">
+              <span className="text-ink-60 shrink-0">Database</span>
               <span className="text-black font-semibold">Supabase Postgres</span>
             </div>
-            <div className="flex justify-between text-sm">
-              <span className="text-ink-60">Storage</span>
+            <div className="flex justify-between text-sm gap-4">
+              <span className="text-ink-60 shrink-0">Storage</span>
               <span className="text-black font-semibold">Supabase Storage</span>
             </div>
           </div>

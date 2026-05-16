@@ -12,14 +12,10 @@ export default async function AdminLayout({ children }: { children: React.ReactN
   const supabase = createClient();
   const { data: { user } } = await supabase.auth.getUser();
 
-  // Login page doesn't need sidebar
-  // We check the path via headers since this is a server component
-  // The middleware already enforces auth; this is the layout for authenticated routes only
-
   return (
     <div className="min-h-screen bg-white">
       {user && <AdminSidebar userEmail={user.email} />}
-      <main className={user ? 'ml-64' : ''}>
+      <main className={user ? 'lg:ml-64' : ''}>
         {children}
       </main>
     </div>
