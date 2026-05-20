@@ -122,7 +122,7 @@ export default function Footer() {
           <div>© 2026 Automation Consulting Services. All rights reserved.</div>
              <div>
       <Link href="https://www.digitalvikingz.com">
-        Digital Vikingz
+        Powered by Digital Vikingz
       </Link>
     </div>
         </div>
