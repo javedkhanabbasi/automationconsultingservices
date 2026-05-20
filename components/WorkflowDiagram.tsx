@@ -18,7 +18,7 @@ export default function WorkflowDiagram() {
       icon: <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1d4ed8" strokeWidth="1.5" strokeLinecap="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18"/></svg>,
     },
     {
-      title: 'Spring 2025 campaign',
+      title: 'Spring 2026 campaign',
       sub: 'Campaign',
       meta: '12,175 rows',
       badge: '1.1/row',
