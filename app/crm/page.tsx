@@ -37,7 +37,7 @@ const failureModes = [
 const faqs = [
   { question: 'Do you actually do data deduplication during migration?', answer: 'Yes. Every migration runs a deduplication pass before data moves. Email + domain matching for people and companies, fuzzy matching on company name with manual review.' },
   { question: 'How do you handle field hygiene without slowing sales down?', answer: 'Progressive field requirements (required at stage transition, not at record creation), nightly cleanup workflows, and a weekly Slack rollup of records missing critical fields.' },
-  { question: 'What does a typical CRM migration cost?', answer: '$5K-$15K for clean datasets under 25,000 contacts. $15K-$40K for messy datasets or multi-source migrations. $40K+ for migrations with custom object rebuilds.' },
+  { question: 'What does a typical CRM migration cost?', answer: '$10-$50M for clean datasets under 25,000 contacts. $10K-$50M for messy datasets or multi-source migrations. $40K+ for migrations with custom object rebuilds.' },
   { question: 'Can the team self-train, or do you handle that?', answer: 'Every implementation includes a 90-minute training session on workflows and the rollback procedure, plus a written runbook for future hires.' },
   { question: 'What about data residency for EU or healthcare clients?', answer: 'Attio, HubSpot, Salesforce, and Pipedrive all offer EU data residency. Salesforce and HubSpot offer healthcare-grade configurations.' },
   { question: 'How do you connect the CRM to billing and support?', answer: 'Through declared integration contracts. Each integration specifies which system owns which fields, which direction data flows, and what happens on conflict.' },

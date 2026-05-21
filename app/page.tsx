@@ -79,14 +79,14 @@ export default function HomePage() {
               <div className="lg:col-span-7">
                 <div className="inline-flex items-center gap-2 mb-6 px-3 py-1.5 rounded-full border border-lime/40 bg-lime/10">
                   <span className="w-1.5 h-1.5 rounded-full bg-lime" />
-                  <span className="text-xs font-semibold text-lime uppercase tracking-wider">Operations infrastructure for $1M-$10M operators</span>
+                  <span className="text-xs font-semibold text-lime uppercase tracking-wider">Operations infrastructure for $10K-$50M operators</span>
                 </div>
                 <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white leading-[1.02] tracking-tight mb-7">
                   Engineering discipline.<br />
                   <span className="text-lime">Applied to your operations.</span>
                 </h1>
                 <p className="text-base lg:text-xl text-white/80 leading-relaxed mb-9 max-w-2xl">
-                  We build CRM systems, workflow infrastructure, and integration architecture for $1M-$10M operators who need their back office to scale faster than their headcount.
+                  We build CRM systems, workflow infrastructure, and integration architecture for $10K-$50M operators who need their back office to scale faster than their headcount.
                 </p>
                 <div className="flex flex-wrap gap-3 mb-10">
                   <Link href="/contact" className="btn-on-dark">Book a discovery call →</Link>
@@ -198,19 +198,25 @@ export default function HomePage() {
                   </Link>
                 </div>
               </div>
-              <div className="grid grid-cols-2 gap-3">
-                {crms.map((c) => (
-                  <Link key={c.name} href={c.href}
-                    className="card p-4 rounded-xl border border-[#9CCC65]/40 transition-all duration-200 hover:border-[#9CCC65] hover:-translate-y-0.5 hover:shadow-sm flex flex-col gap-2">
-                    <div className="w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0" style={{ background: c.iconBg }}>{c.icon}</div>
-                    <div>
-                      <div className="font-semibold text-black text-sm leading-tight">{c.name}</div>
-                      <div className="text-xs text-ink-60 mt-0.5">{c.tag}</div>
-                    </div>
-                    {c.badge && <span className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded w-fit" style={{ background: '#f0f6e8', color: '#3B6D11' }}>Partner</span>}
-                  </Link>
-                ))}
-              </div>
+             <div className="grid grid-cols-2 gap-3">
+  {crms.map((c) => (
+    <Link key={c.name} href={c.href}
+      className="card p-4 rounded-xl border border-[#9CCC65]/40 transition-all duration-200 hover:border-[#9CCC65] hover:-translate-y-0.5 hover:shadow-sm flex flex-col gap-2">
+      <div>
+        <div className="font-semibold text-black text-sm leading-tight">{c.name}</div>
+        <div className="text-xs text-ink-60 mt-0.5">{c.tag}</div>
+      </div>
+      {c.badge && (
+        <span
+          className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded w-fit"
+          style={{ background: '#f0f6e8', color: '#3B6D11' }}
+        >
+          Partner
+        </span>
+      )}
+    </Link>
+  ))}
+</div>
             </div>
           </div>
         </section>

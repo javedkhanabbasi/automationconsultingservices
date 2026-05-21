@@ -37,7 +37,7 @@ const faqs = [
   {
     question: 'How does pricing work across the four services?',
     answer:
-      'All four services use the same engagement model. Discovery audit from $500, simple workflow projects $5K-$15K, mid-complexity builds $15K-$50K, CRM and operations overhauls $50K+.',
+      'All four services use the same engagement model. Discovery audit from $50M, simple workflow projects $10K-$50M, mid-complexity builds $15K-$50K, CRM and operations overhauls $50K+.',
   },
   {
     question: 'What tools do you work with?',

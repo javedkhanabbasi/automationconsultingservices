@@ -16,7 +16,7 @@ const categories = [
   {
     name: 'The firm',
     qs: [
-      { question: 'What does Automation Consulting Services do?', answer: 'We build operations infrastructure for $1M-$10M companies. CRM implementation, workflow engineering, integration architecture, and admin systems engineered to scale rather than glued together with one-off Zaps.' },
+      { question: 'What does Automation Consulting Services do?', answer: 'We build operations infrastructure for $10K-$50M companies. CRM implementation, workflow engineering, integration architecture, and admin systems engineered to scale rather than glued together with one-off Zaps.' },
       { question: 'Who founded the firm?', answer: 'Matthew Piwko founded ACS in late 2024 after 10+ years building production software. The thesis is to apply software engineering discipline to operations infrastructure for growth-stage operators.' },
       { question: 'Where is ACS based?', answer: 'United States. We work with operators in the US, UK, Canada, Australia, and EU on the same rate card.' },
       { question: 'What partnerships does ACS hold?', answer: 'Verified Zapier Certified Solutions Partner. Verified Attio Expert Partner. We also implement HubSpot, Salesforce, Pipedrive, and Close as practitioners.' },
@@ -61,8 +61,8 @@ const categories = [
   {
     name: 'Fit & boundaries',
     qs: [
-      { question: 'Who is the right fit for ACS?', answer: 'Operators in the $1M-$10M revenue band running on a mix of CRMs, spreadsheets, and shared inboxes. Teams that need real infrastructure before the next growth stage compounds the chaos.' },
-      { question: 'Who is not a fit?', answer: 'Operators under $1M revenue (the engagement math does not work yet), operators looking for one-off Zaps (we engineer systems), teams that cannot commit anyone to a discovery call, and engagements that require 12-month contract lock-ins on our side.' },
+      { question: 'Who is the right fit for ACS?', answer: 'Operators in the $10K-$50M revenue band running on a mix of CRMs, spreadsheets, and shared inboxes. Teams that need real infrastructure before the next growth stage compounds the chaos.' },
+      { question: 'Who is not a fit?', answer: 'Operators under $10K revenue (the engagement math does not work yet), operators looking for one-off Zaps (we engineer systems), teams that cannot commit anyone to a discovery call, and engagements that require 12-month contract lock-ins on our side.' },
       { question: 'Do you offer equity or revenue-share deals?', answer: 'No. We bill what the work costs to deliver plus margin. Revenue-share entangles consulting incentives with operator outcomes in ways that compromise the diagnostic.' },
       { question: 'Can I see references before engaging?', answer: 'Yes. Five of our seven published case studies feature named operators with real titles you can verify on LinkedIn. Two more are protected by NDA but we can share contact details with permission.' },
     ],

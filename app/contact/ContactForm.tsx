@@ -48,10 +48,10 @@ export default function ContactForm() {
         <label className="block text-xs font-bold text-black uppercase tracking-wider mb-2" htmlFor="revenue">Project Size</label>
         <select id="revenue" name="revenue" className="w-full px-4 py-3 border border-ink-20 rounded-md text-black focus:border-black focus:outline-none bg-white">
           <option>Select Project Size</option>
-          <option>Small ($5k - 15k)</option>
-          <option>Medium ($15k - 50k)</option>
-          <option>Large ($50k - 100k)</option>
-          <option>Enterprise ($100k+)</option>
+          <option>Small ($5K - 10K)</option>
+          <option>Medium ($10K - 50K)</option>
+          <option>Large ($50K - 100K)</option>
+          <option>Enterprise ($50M+)</option>
         </select>
       </div>
 

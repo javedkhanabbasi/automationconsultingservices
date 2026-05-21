@@ -49,7 +49,7 @@ export default function Footer() {
 
 
             <p className="text-sm text-white/70 leading-relaxed mb-4">
-              Operations infrastructure built with engineering discipline for $1M-$10M operators.
+              Operations infrastructure built with engineering discipline for $10K-$50M operators.
             </p>
             <div className="flex flex-wrap gap-2 text-[10px] uppercase tracking-wider font-bold">
               <span className="px-2 py-1 bg-lime text-black rounded">Zapier Certified</span>
