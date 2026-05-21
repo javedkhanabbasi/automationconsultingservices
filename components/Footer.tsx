@@ -17,7 +17,7 @@ const FOOTER = {
   ],
   resources: [
     { label: 'Case studies', href: '/case-studies' },
-    { label: 'Blog', href: '/blog' },
+    { label: 'Resources', href: '/blog' },
     { label: 'Free tools', href: '/tools' },
     { label: 'FAQ', href: '/faq' },
   ],
