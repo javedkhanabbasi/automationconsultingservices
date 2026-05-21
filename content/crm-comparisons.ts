@@ -46,7 +46,7 @@ export const crmComparisons: CrmComparison[] = [
     a: { name: 'Attio', tag: 'Modern GTM-native' },
     b: { name: 'Salesforce', tag: 'Enterprise standard' },
     title: 'Attio vs Salesforce',
-    excerpt: 'Modern flexibility vs enterprise depth. Most $10K-$50M operators do not need Salesforce capability yet.',
+    excerpt: 'Modern flexibility vs enterprise depth. Most $10M-$50M operators do not need Salesforce capability yet.',
     verdict:
       'Pick Attio for $1M-$10M operators. Pick Salesforce when you are 50+ users, have complex integration estate, or industry compliance demands it.',
     whenAWins: ['Under $25M revenue', 'Modern data model', 'Speed to value matters', 'Cost-sensitive'],
@@ -144,7 +144,7 @@ export const crmComparisons: CrmComparison[] = [
     a: { name: 'Pipedrive', tag: 'Pipeline-first' },
     b: { name: 'Salesforce', tag: 'Enterprise standard' },
     title: 'Pipedrive vs Salesforce',
-    excerpt: 'Most $10K-$50M operators do not need Salesforce. Pipedrive ships in weeks at one-third the cost.',
+    excerpt: 'Most $10M-$50M operators do not need Salesforce. Pipedrive ships in weeks at one-third the cost.',
     verdict: 'Pipedrive for under-25-user teams. Salesforce when you scale past 50 or inherit Salesforce infrastructure.',
     whenAWins: ['Under 25 users', 'Pipeline-driven motion', 'Speed matters', 'Cost-sensitive'],
     whenBWins: ['50+ users', 'Complex multi-team hierarchies', 'Enterprise integration estate'],

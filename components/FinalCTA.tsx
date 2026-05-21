@@ -12,7 +12,7 @@ export default function FinalCTA() {
             Book a discovery call.
           </h2>
           <p className="text-lg text-white/80 leading-relaxed mb-10 max-w-2xl mx-auto">
-            Paid discovery from $500K. Output is a written audit, ranked bottleneck list, and recommended scope. If we are not the right fit, we say so on the call.
+            Paid discovery from $500. Output is a written audit, ranked bottleneck list, and recommended scope. If we are not the right fit, we say so on the call.
           </p>
           <div className="flex flex-wrap gap-3 justify-center">
             <Link href="/contact" className="btn-on-dark">

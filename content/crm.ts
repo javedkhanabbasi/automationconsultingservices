@@ -89,7 +89,7 @@ export const crmPlatforms: CrmPlatform[] = [
     timeline: '6-12 weeks to first value',
     costNote: '~$150+/seat at 10 users (with implementation)',
     practitionerNote:
-      'Salesforce is overkill for most $10K-$50M operators. The platform is excellent at what it does, but you pay for capability you will not use until $25M+.',
+      'Salesforce is overkill for most $10M-$50M operators. The platform is excellent at what it does, but you pay for capability you will not use until $25M+.',
     capabilities: [
       'Deep custom object support',
       'Mature Flow Builder automation',
@@ -106,7 +106,7 @@ export const crmPlatforms: CrmPlatform[] = [
       {
         question: 'How long does a Salesforce migration take?',
         answer:
-          '12-24 weeks for $10K-$50M operators. Longer if extensive custom objects or compliance requirements are involved.',
+          '12-24 weeks for $10M-$50M operators. Longer if extensive custom objects or compliance requirements are involved.',
       },
     ],
   },

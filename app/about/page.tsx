@@ -56,7 +56,7 @@ export default function AboutPage() {
                 <span className="text-lime">Accountable to operators.</span>
               </h1>
               <p className="text-lg lg:text-xl text-white/80 leading-relaxed max-w-3xl">
-                Automation Consulting Services builds operations infrastructure for $10K-$50M operators. Founded in late 2024 by Matthew Piwko. Run by people who treat your back office the way they would treat production software.
+                Automation Consulting Services builds operations infrastructure for $10M-$50M operators. Founded in late 2024 by Matthew Piwko. Run by people who treat your back office the way they would treat production software.
               </p>
             </div>
           </div>
@@ -69,7 +69,7 @@ export default function AboutPage() {
               <div className="lg:col-span-4">
                 <div className="card overflow-hidden sticky top-24">
                   <div className="relative w-full h-[320px] sm:h-[380px] lg:h-[420px] bg-ink-5">
-                    <Image src="/images/matt.png" alt="Matthew Piwko" fill className="object-cover object-top" priority />
+                    <Image src="/math.jpg" alt="Matthew Piwko" fill className="object-cover object-top" priority />
                   </div>
                   <div className="p-7">
                     <div className="mb-5">
@@ -99,9 +99,9 @@ export default function AboutPage() {
                 <h2 className="text-3xl lg:text-4xl font-bold text-black leading-tight mb-7">Why ACS was founded.</h2>
                 <div className="space-y-5 text-ink-70 leading-relaxed">
                   <p>Matt Piwko spent more than a decade building production software. The patterns that show up in engineering culture version control, declared contracts, runbooks, observability are the same patterns missing from how most growth-stage operators run their business.</p>
-                  <p>Working alongside founders in the $10K-$50M revenue band, one pattern repeated. The CRM was a spreadsheet with extra steps. Operations lived in Slack threads and tribal knowledge. Admin work rebuilt itself in three places every week. Owners hired more people to compensate, and the operational debt compounded faster than the team could absorb.</p>
+                  <p>Working alongside founders in the $10M-$50M revenue band, one pattern repeated. The CRM was a spreadsheet with extra steps. Operations lived in Slack threads and tribal knowledge. Admin work rebuilt itself in three places every week. Owners hired more people to compensate, and the operational debt compounded faster than the team could absorb.</p>
                   <p>Automation Consulting Services was founded in late 2024 to apply software engineering discipline to that exact problem. Not as a marketing campaign or a "digital transformation" pitch. As an operations infrastructure firm engineered to ship working systems that survive personnel changes and scale faster than headcount.</p>
-                  <p className="text-black font-semibold">The thesis is simple. Treat your operations the way you would treat your software, because at $10K-$50M, your operations is your software.</p>
+                  <p className="text-black font-semibold">The thesis is simple. Treat your operations the way you would treat your software, because at $10M-$50M, your operations is your software.</p>
                 </div>
               </div>
             </div>

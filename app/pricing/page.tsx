@@ -22,9 +22,9 @@ const principles = [
 
 const projectTiers = [
   { name: 'Discovery audit', range: 'From $500', duration: '1-2 weeks', tagline: 'Map the operational pain before spending on the fix.', deliverables: ['Workflow map of current state', 'Prioritized bottleneck list', 'Recommended architecture', 'Written scope for build phase', '60-minute walkthrough with founder'], payment: 'Paid in full at kickoff. Refundable if the real bottleneck is not automation.', featured: false },
-  { name: 'Simple workflow', range: '$5K – $15K', duration: '2-4 weeks', tagline: 'One well-defined workflow built right the first time.', deliverables: ['Workflow architecture document', 'Production build in Zapier, Make, or n8n', 'Native integrations with CRM and tools', 'Error monitoring and retry logic', 'Operator training and runbook', '30 days of post-launch tuning'], payment: '50% at kickoff, 50% at production launch.', featured: false },
-  { name: 'Mid-complexity build', range: '$10K – $50M', duration: '4-8 weeks', tagline: 'Multi-workflow systems with real engineering rigor.', deliverables: ['Full operational map and architecture', '3-8 connected workflows', 'CRM data model design and migration', 'Custom API integrations', 'Idempotent design with observability', 'Phased rollout with change management', '60 days of post-launch tuning'], payment: '40% kickoff, 30% milestone, 30% production.', featured: true },
-  { name: 'CRM + operations overhaul', range: '$50M+', duration: '8-16 weeks', tagline: 'Full operations infrastructure rebuild.', deliverables: ['CRM platform selection or migration', 'Complete data model architecture', 'Historical data migration with deduplication', '10+ connected workflows', 'Custom integration layer', 'Engineering-grade observability', 'Phased rollout with weekly reviews', '90 days of optimization'], payment: '4 milestone payments tied to discovery, kickoff, midpoint, production.', featured: false },
+  { name: 'Simple workflow', range: '$5K – $15K', duration: '1-3 months', tagline: 'One well-defined workflow built right the first time.', deliverables: ['Workflow architecture document', 'Production build in Zapier, Make, or n8n', 'Native integrations with CRM and tools', 'Error monitoring and retry logic', 'Operator training and runbook', '30 days of post-launch tuning'], payment: '50% at kickoff, 50% at production launch.', featured: false },
+  { name: 'Mid-complexity build', range: '$10M – $50M', duration: '3-6 months', tagline: 'Multi-workflow systems with real engineering rigor.', deliverables: ['Full operational map and architecture', '3-8 connected workflows', 'CRM data model design and migration', 'Custom API integrations', 'Idempotent design with observability', 'Phased rollout with change management', '60 days of post-launch tuning'], payment: '40% kickoff, 30% milestone, 30% production.', featured: true },
+  { name: 'CRM + operations overhaul', range: '$50M+', duration: '6-18 MONTHS', tagline: 'Full operations infrastructure rebuild.', deliverables: ['CRM platform selection or migration', 'Complete data model architecture', 'Historical data migration with deduplication', '10+ connected workflows', 'Custom integration layer', 'Engineering-grade observability', 'Phased rollout with weekly reviews', '90 days of optimization'], payment: '4 milestone payments tied to discovery, kickoff, midpoint, production.', featured: false },
 ];
 
 const retainers = [
@@ -34,8 +34,8 @@ const retainers = [
 ];
 
 const comparison = [
-  { option: 'ACS mid-tier build', cost: '$10K – $50M', timeline: '4-8 weeks', delivers: ['3-8 production workflows', 'CRM data model design', 'Custom integrations included', 'Runbook and training', '60 days of tuning'], risks: 'Scope locked at end of discovery. Change orders are explicit.', featured: true },
-  { option: 'In-house automation engineer', cost: '$120K – $180K/yr', timeline: '3-6 months to productivity', delivers: ['Continuous in-house capacity', 'Direct on-call coverage', 'Deep institutional knowledge'], risks: 'Hard to hire at $10K-$50M scale. Single point of failure. Workflows stay in their head.', featured: false },
+  { option: 'ACS mid-tier build', cost: '$10M – $50M', timeline: '4-8 weeks', delivers: ['3-8 production workflows', 'CRM data model design', 'Custom integrations included', 'Runbook and training', '60 days of tuning'], risks: 'Scope locked at end of discovery. Change orders are explicit.', featured: true },
+  { option: 'In-house automation engineer', cost: '$120K – $180K/yr', timeline: '3-6 months to productivity', delivers: ['Continuous in-house capacity', 'Direct on-call coverage', 'Deep institutional knowledge'], risks: 'Hard to hire at $10M-$50M scale. Single point of failure. Workflows stay in their head.', featured: false },
   { option: 'Enterprise consultancy', cost: '$80K – $250K+', timeline: '12-26 weeks', delivers: ['Large team', 'Brand-name on engagement', 'Deep process documentation'], risks: 'Sized for enterprise. Junior consultants on delivery. Reports over running systems.', featured: false },
   { option: 'Fiverr / Upwork freelancer', cost: '$500 – $5K', timeline: '1-3 weeks', delivers: ['Single workflow', 'Fast on simple tasks', 'Low up-front cost'], risks: 'No architecture. No runbook. Workflow rots within 6 months. No accountability.', featured: false },
 ];
@@ -179,7 +179,7 @@ export default function PricingPage() {
             <div className="max-w-3xl mb-12">
               <div className="eyebrow mb-3">The alternatives</div>
               <h2 className="text-3xl lg:text-4xl font-bold text-black leading-tight mb-4">
-                What a $10K-$50M mid-tier build actually buys.
+                What a $10M-$50M mid-tier build actually buys.
               </h2>
               <p className="text-ink-70 leading-relaxed">
                 Four paths exist at that budget level. The honest comparison below explains what each delivers and what each risks.
@@ -197,7 +197,7 @@ export default function PricingPage() {
                     </div>
                     {c.featured && (
                       <div className="mt-3 inline-flex items-center gap-1.5 bg-lime text-black px-2.5 py-1 rounded text-[11px] font-bold">
-                        ✓ Recommended for $10K-$50M operators
+                        ✓ Recommended for $10M-$50M operators
                       </div>
                     )}
                   </div>

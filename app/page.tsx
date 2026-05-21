@@ -16,8 +16,8 @@ export const metadata: Metadata = buildMetadata({
 });
 
 const homepageFaqs = [
-  { question: 'What does Automation Consulting Services do?', answer: 'We build operations infrastructure for $1M-$10M companies. CRM implementation, workflow engineering, integration architecture, and admin systems engineered to scale rather than glued together with one-off Zaps.' },
-  { question: 'Who is the right fit for ACS?', answer: 'Operators in the $1M-$10M revenue band running on a mix of CRMs, spreadsheets, and shared inboxes. Teams that need real infrastructure before the next growth stage compounds the chaos.' },
+  { question: 'What does Automation Consulting Services do?', answer: 'We build operations infrastructure for $10M-$50M companies. CRM implementation, workflow engineering, integration architecture, and admin systems engineered to scale rather than glued together with one-off Zaps.' },
+  { question: 'Who is the right fit for ACS?', answer: 'Operators in the $10M-$50M revenue band running on a mix of CRMs, spreadsheets, and shared inboxes. Teams that need real infrastructure before the next growth stage compounds the chaos.' },
   { question: 'What tools does ACS work with?', answer: 'Attio, HubSpot, Salesforce, Pipedrive, Close on the CRM side. Zapier and Make for workflows. n8n for self-hosted automation. Custom Python and Node when off-the-shelf stops being enough.' },
   { question: 'How is this different from hiring an agency?', answer: 'Most agencies sell Zaps and call it automation. We engineer systems. Matthew Piwko has 10+ years of software development experience, holds Zapier Certified Solutions Partner status, and is a verified Attio Expert Partner.' },
 ];
@@ -30,36 +30,94 @@ const services = [
 ];
 
 const featuredCases = [
-  { slug: 'hvac-lead-time-automation', industry: 'HVAC distribution', revenue: '$8M', metric: '5,500+ SKUs hourly' },
-  { slug: 'fencing-automation-management', industry: 'Construction', revenue: '$25M', metric: '100+ workflows' },
-  { slug: 'healthcare-meeting-automation', industry: 'Healthcare SaaS', revenue: 'Series B', metric: '6-8 hrs/week saved' },
+  {
+    slug: 'hvac-lead-time-automation',
+    industry: 'HVAC distribution',
+    revenue: '$8M',
+    metric: '5,500+ SKUs hourly',
+    bullets: [
+      '500+ SKUs processed hourly',
+      'Real-time inventory visibility',
+      'Reduced manual order errors',
+    ],
+  },
+  {
+    slug: 'fencing-automation-management',
+    industry: 'Construction',
+    revenue: '$25M',
+    metric: '100+ workflows',
+    bullets: [
+      '100+ workflows automated',
+      'Faster project handoffs',
+      'Clear team accountability',
+    ],
+  },
+  {
+    slug: 'healthcare-meeting-automation',
+    industry: 'Healthcare SaaS',
+    revenue: 'Series B',
+    metric: '6-8 hrs/week saved',
+    bullets: [
+      '6–8 hours saved weekly',
+      'Streamlined patient workflows',
+      'Improved reporting accuracy',
+    ],
+  },
 ];
 
 const crms = [
   {
     name: 'Attio', tag: 'Expert Partner', href: '/crm/attio', badge: true,
-    iconBg: '#f0f0f0',
-    icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2L4 6v6c0 5.25 3.5 10.15 8 11.35C16.5 22.15 20 17.25 20 12V6l-8-4z" fill="#1a1a1a"/><circle cx="12" cy="12" r="3" fill="white"/></svg>,
+    iconBg: '#F7F8F5',
+    icon: (
+      <svg width="30" height="30" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+        <rect x="7" y="7" width="34" height="34" rx="11" fill="#111827" />
+        <path d="M24 12.5 34 18v7.5c0 6.7-4.25 12.35-10 14-5.75-1.65-10-7.3-10-14V18l10-5.5Z" fill="#FFFFFF" />
+        <path d="M24 17.5 30 21v5c0 4.1-2.45 7.45-6 8.65-3.55-1.2-6-4.55-6-8.65v-5l6-3.5Z" fill="#111827" />
+      </svg>
+    ),
   },
   {
     name: 'HubSpot', tag: 'Marketing + sales', href: '/crm/hubspot',
-    iconBg: '#fff4f0',
-    icon: <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.164 7.93V5.768a1.875 1.875 0 10-1.875 0V7.93a5.616 5.616 0 00-2.677 1.472L7.857 6.354a2.07 2.07 0 10-.93 1.604l5.593 3.01A5.556 5.556 0 0012.25 12a5.613 5.613 0 00.309 1.84l-3.87 2.235a2.063 2.063 0 10.937 1.597l3.86-2.229a5.625 5.625 0 108.678-5.513zm-4.913 6.82a2.25 2.25 0 110-4.5 2.25 2.25 0 010 4.5z" fill="#FF7A59"/></svg>,
+    iconBg: '#FFF3EE',
+    icon: (
+      <svg width="32" height="32" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+        <circle cx="24" cy="24" r="18" fill="#FF7A59" opacity="0.14" />
+        <path d="M32.7 18.1v-3.2a3.1 3.1 0 1 0-3.1 0v3.2a8.9 8.9 0 0 0-4 2.2l-8.1-4.35a3.25 3.25 0 1 0-1.45 2.55l7.85 4.2a8.6 8.6 0 0 0-.45 2.75c0 .95.16 1.85.45 2.7l-5.7 3.3a3.28 3.28 0 1 0 1.5 2.52l5.6-3.25a8.95 8.95 0 1 0 7.4-12.62Zm-2.3 11.8a4.55 4.55 0 1 1 0-9.1 4.55 4.55 0 0 1 0 9.1Z" fill="#FF7A59" />
+      </svg>
+    ),
   },
   {
     name: 'Salesforce', tag: 'Enterprise', href: '/crm/salesforce',
-    iconBg: '#f0f6ff',
-    icon: <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M10.002 6.168a3.94 3.94 0 012.857-1.23c1.29 0 2.43.624 3.143 1.587a4.895 4.895 0 011.788-.337c2.728 0 4.94 2.231 4.94 4.983 0 2.75-2.212 4.982-4.94 4.982a4.88 4.88 0 01-1.038-.112 3.574 3.574 0 01-3.2 1.999 3.552 3.552 0 01-1.517-.337 4.204 4.204 0 01-3.872 2.577c-2.055 0-3.8-1.477-4.262-3.453A3.96 3.96 0 013 16.4a3.99 3.99 0 013.987-3.995c.152 0 .301.01.449.027a4.444 4.444 0 01-.337-1.7c0-2.404 1.9-4.384 4.28-4.508a3.95 3.95 0 01-.377-.056z" fill="#00A1E0"/></svg>,
+    iconBg: '#EEF8FF',
+    icon: (
+      <svg width="34" height="34" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+        <path d="M19.35 16.25a8 8 0 0 1 13.4.75 9.8 9.8 0 0 1 2.7-.38c5.05 0 9.15 3.77 9.15 8.43s-4.1 8.43-9.15 8.43c-.8 0-1.57-.1-2.3-.28a7.3 7.3 0 0 1-6.1 3.25 7.15 7.15 0 0 1-4.75-1.8 8.75 8.75 0 0 1-6.2 2.55c-4.25 0-7.8-2.95-8.55-6.85A7.2 7.2 0 0 1 3.4 23.8c0-4 3.25-7.25 7.25-7.25.9 0 1.75.16 2.55.46a8.25 8.25 0 0 1 6.15-.76Z" fill="#00A1E0" />
+        <path d="M16.4 25.7c1.45 0 2.25-.55 2.25-1.5 0-.8-.6-1.15-1.82-1.42l-.62-.13c-1.75-.38-2.75-1.2-2.75-2.55 0-1.65 1.28-2.72 3.35-2.72 1.03 0 2 .25 2.68.67l-.65 1.55a4.15 4.15 0 0 0-2.1-.58c-.95 0-1.48.38-1.48 1.02 0 .72.6.98 1.72 1.23l.7.15c1.98.43 2.82 1.28 2.82 2.66 0 1.78-1.4 2.95-3.98 2.95-1.25 0-2.43-.3-3.2-.82l.72-1.55c.67.45 1.5.78 2.36.78Z" fill="white" />
+      </svg>
+    ),
   },
   {
     name: 'Pipedrive', tag: 'Pipeline-first', href: '/crm/pipedrive',
-    iconBg: '#fff0f0',
-    icon: <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 4.5a4.5 4.5 0 110 9 4.5 4.5 0 010-9zm0 13.5c-3.315 0-6.255-1.575-8.145-4.02.045-2.7 5.43-4.185 8.145-4.185 2.7 0 8.1 1.485 8.145 4.185C18.255 16.425 15.315 18 12 18z" fill="#E8392A"/></svg>,
+    iconBg: '#FFF1F1',
+    icon: (
+      <svg width="32" height="32" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+        <circle cx="24" cy="24" r="18" fill="#E8392A" opacity="0.12" />
+        <circle cx="24" cy="24" r="13" fill="#E8392A" />
+        <path d="M17 24c0-3.45 2.8-6.25 6.25-6.25h5.25c1.6 0 2.9 1.3 2.9 2.9v6.7c0 1.6-1.3 2.9-2.9 2.9H23.2A6.2 6.2 0 0 1 17 24Zm4.2 0a2.1 2.1 0 0 0 2.1 2.1h3.2c.38 0 .7-.32.7-.7v-2.8a.7.7 0 0 0-.7-.7h-3.2a2.1 2.1 0 0 0-2.1 2.1Z" fill="white" />
+      </svg>
+    ),
   },
   {
     name: 'Close', tag: 'Inside sales', href: '/crm/close',
-    iconBg: '#f5f0ff',
-    icon: <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect width="24" height="24" rx="6" fill="#7C3AED"/><path d="M7 12h10M12 7l5 5-5 5" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>,
+    iconBg: '#F4F0FF',
+    icon: (
+      <svg width="32" height="32" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+        <rect x="9" y="9" width="30" height="30" rx="9" fill="#7C3AED" />
+        <path d="M17 24h13.4" stroke="white" strokeWidth="4" strokeLinecap="round" />
+        <path d="M25 17.5 31.5 24 25 30.5" stroke="white" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    ),
   },
 ];
 
@@ -79,14 +137,14 @@ export default function HomePage() {
               <div className="lg:col-span-7">
                 <div className="inline-flex items-center gap-2 mb-6 px-3 py-1.5 rounded-full border border-lime/40 bg-lime/10">
                   <span className="w-1.5 h-1.5 rounded-full bg-lime" />
-                  <span className="text-xs font-semibold text-lime uppercase tracking-wider">Operations infrastructure for $10K-$50M operators</span>
+                  <span className="text-xs font-semibold text-lime uppercase tracking-wider">Operations infrastructure for $10M-$50M operators</span>
                 </div>
                 <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold text-white leading-[1.02] tracking-tight mb-7">
                   Engineering discipline.<br />
                   <span className="text-lime">Applied to your operations.</span>
                 </h1>
                 <p className="text-base lg:text-xl text-white/80 leading-relaxed mb-9 max-w-2xl">
-                  We build CRM systems, workflow infrastructure, and integration architecture for $10K-$50M operators who need their back office to scale faster than their headcount.
+                  We build CRM systems, workflow infrastructure, and integration architecture for $10M-$50M operators who need their back office to scale faster than their headcount.
                 </p>
                 <div className="flex flex-wrap gap-3 mb-10">
                   <Link href="/contact" className="btn-on-dark">Book a discovery call →</Link>
@@ -201,19 +259,18 @@ export default function HomePage() {
              <div className="grid grid-cols-2 gap-3">
   {crms.map((c) => (
     <Link key={c.name} href={c.href}
-      className="card p-4 rounded-xl border border-[#9CCC65]/40 transition-all duration-200 hover:border-[#9CCC65] hover:-translate-y-0.5 hover:shadow-sm flex flex-col gap-2">
-      <div>
-        <div className="font-semibold text-black text-sm leading-tight">{c.name}</div>
-        <div className="text-xs text-ink-60 mt-0.5">{c.tag}</div>
+      className="card group p-5 rounded-2xl border border-[#9CCC65]/40 bg-white transition-all duration-300 hover:border-[#9CCC65] hover:-translate-y-1 hover:bg-[#9CCC65]/5 hover:shadow-[0_16px_35px_rgba(0,0,0,0.08)] flex flex-col gap-3">
+      <div
+        className="w-14 h-14 rounded-2xl border border-black/5 shadow-[0_8px_22px_rgba(0,0,0,0.08)] flex items-center justify-center flex-shrink-0 overflow-hidden transition-transform duration-300 group-hover:scale-105"
+        style={{ background: c.iconBg }}
+      >
+        {c.icon}
       </div>
-      {c.badge && (
-        <span
-          className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded w-fit"
-          style={{ background: '#f0f6e8', color: '#3B6D11' }}
-        >
-          Partner
-        </span>
-      )}
+      <div>
+        <div className="font-bold text-black text-lg leading-tight">{c.name}</div>
+        <div className="text-sm text-ink-60 mt-1">{c.tag}</div>
+      </div>
+      {c.badge && <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md w-fit" style={{ background: '#f0f6e8', color: '#3B6D11' }}>Partner</span>}
     </Link>
   ))}
 </div>
@@ -242,7 +299,16 @@ export default function HomePage() {
                     <span className="text-xs font-semibold text-ink-60 transition-colors duration-300 group-hover:text-black">{cs.revenue}</span>
                   </div>
                   <div className="text-2xl font-bold text-black mb-2 leading-tight transition-colors duration-300 group-hover:text-[#7CB342]">{cs.metric}</div>
-                  <div className="text-xs text-ink-60 mb-5">Headline metric</div>
+                  <div className="mb-5 space-y-2">
+                    {cs.bullets.map((item, index) => (
+                      <div key={index} className="flex items-center gap-2 text-xs text-ink-60">
+                        <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#6FAF3A] text-white text-[11px] font-bold">
+                          ✓
+                        </span>
+                        <span>{item}</span>
+                      </div>
+                    ))}
+                  </div>
                   <span className="inline-flex items-center gap-1.5 text-black font-semibold text-sm transition-colors duration-300 group-hover:text-[#7CB342]">
                     Read engagement <span className="transition-transform duration-300 group-hover:translate-x-1.5">→</span>
                   </span>
