@@ -67,57 +67,40 @@ const featuredCases = [
 
 const crms = [
   {
-    name: 'Attio', tag: 'Expert Partner', href: '/crm/attio', badge: true,
-    iconBg: '#F7F8F5',
-    icon: (
-      <svg width="30" height="30" viewBox="0 0 48 48" fill="none" aria-hidden="true">
-        <rect x="7" y="7" width="34" height="34" rx="11" fill="#111827" />
-        <path d="M24 12.5 34 18v7.5c0 6.7-4.25 12.35-10 14-5.75-1.65-10-7.3-10-14V18l10-5.5Z" fill="#FFFFFF" />
-        <path d="M24 17.5 30 21v5c0 4.1-2.45 7.45-6 8.65-3.55-1.2-6-4.55-6-8.65v-5l6-3.5Z" fill="#111827" />
-      </svg>
-    ),
+    name: 'Attio',
+    tag: 'Expert Partner',
+    href: '/crm/attio',
+    badge: true,
+    image: '/images/attio.png',
+    imageBg: '#F7F8F5',
   },
   {
-    name: 'HubSpot', tag: 'Marketing + sales', href: '/crm/hubspot',
-    iconBg: '#FFF3EE',
-    icon: (
-      <svg width="32" height="32" viewBox="0 0 48 48" fill="none" aria-hidden="true">
-        <circle cx="24" cy="24" r="18" fill="#FF7A59" opacity="0.14" />
-        <path d="M32.7 18.1v-3.2a3.1 3.1 0 1 0-3.1 0v3.2a8.9 8.9 0 0 0-4 2.2l-8.1-4.35a3.25 3.25 0 1 0-1.45 2.55l7.85 4.2a8.6 8.6 0 0 0-.45 2.75c0 .95.16 1.85.45 2.7l-5.7 3.3a3.28 3.28 0 1 0 1.5 2.52l5.6-3.25a8.95 8.95 0 1 0 7.4-12.62Zm-2.3 11.8a4.55 4.55 0 1 1 0-9.1 4.55 4.55 0 0 1 0 9.1Z" fill="#FF7A59" />
-      </svg>
-    ),
+    name: 'HubSpot',
+    tag: 'Marketing + sales',
+    href: '/crm/hubspot',
+    image: '/images/hubspot.png',
+    imageBg: '#FFF3EE',
   },
   {
-    name: 'Salesforce', tag: 'Enterprise', href: '/crm/salesforce',
-    iconBg: '#EEF8FF',
-    icon: (
-      <svg width="34" height="34" viewBox="0 0 48 48" fill="none" aria-hidden="true">
-        <path d="M19.35 16.25a8 8 0 0 1 13.4.75 9.8 9.8 0 0 1 2.7-.38c5.05 0 9.15 3.77 9.15 8.43s-4.1 8.43-9.15 8.43c-.8 0-1.57-.1-2.3-.28a7.3 7.3 0 0 1-6.1 3.25 7.15 7.15 0 0 1-4.75-1.8 8.75 8.75 0 0 1-6.2 2.55c-4.25 0-7.8-2.95-8.55-6.85A7.2 7.2 0 0 1 3.4 23.8c0-4 3.25-7.25 7.25-7.25.9 0 1.75.16 2.55.46a8.25 8.25 0 0 1 6.15-.76Z" fill="#00A1E0" />
-        <path d="M16.4 25.7c1.45 0 2.25-.55 2.25-1.5 0-.8-.6-1.15-1.82-1.42l-.62-.13c-1.75-.38-2.75-1.2-2.75-2.55 0-1.65 1.28-2.72 3.35-2.72 1.03 0 2 .25 2.68.67l-.65 1.55a4.15 4.15 0 0 0-2.1-.58c-.95 0-1.48.38-1.48 1.02 0 .72.6.98 1.72 1.23l.7.15c1.98.43 2.82 1.28 2.82 2.66 0 1.78-1.4 2.95-3.98 2.95-1.25 0-2.43-.3-3.2-.82l.72-1.55c.67.45 1.5.78 2.36.78Z" fill="white" />
-      </svg>
-    ),
+    name: 'Salesforce',
+    tag: 'Enterprise',
+    href: '/crm/salesforce',
+    image: '/images/salesforce.png',
+    imageBg: '#EEF8FF',
   },
   {
-    name: 'Pipedrive', tag: 'Pipeline-first', href: '/crm/pipedrive',
-    iconBg: '#FFF1F1',
-    icon: (
-      <svg width="32" height="32" viewBox="0 0 48 48" fill="none" aria-hidden="true">
-        <circle cx="24" cy="24" r="18" fill="#E8392A" opacity="0.12" />
-        <circle cx="24" cy="24" r="13" fill="#E8392A" />
-        <path d="M17 24c0-3.45 2.8-6.25 6.25-6.25h5.25c1.6 0 2.9 1.3 2.9 2.9v6.7c0 1.6-1.3 2.9-2.9 2.9H23.2A6.2 6.2 0 0 1 17 24Zm4.2 0a2.1 2.1 0 0 0 2.1 2.1h3.2c.38 0 .7-.32.7-.7v-2.8a.7.7 0 0 0-.7-.7h-3.2a2.1 2.1 0 0 0-2.1 2.1Z" fill="white" />
-      </svg>
-    ),
+    name: 'Pipedrive',
+    tag: 'Pipeline-first',
+    href: '/crm/pipedrive',
+    image: '/images/p.png',
+    imageBg: '#FFF1F1',
   },
   {
-    name: 'Close', tag: 'Inside sales', href: '/crm/close',
-    iconBg: '#F4F0FF',
-    icon: (
-      <svg width="32" height="32" viewBox="0 0 48 48" fill="none" aria-hidden="true">
-        <rect x="9" y="9" width="30" height="30" rx="9" fill="#7C3AED" />
-        <path d="M17 24h13.4" stroke="white" strokeWidth="4" strokeLinecap="round" />
-        <path d="M25 17.5 31.5 24 25 30.5" stroke="white" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    ),
+    name: 'Close',
+    tag: 'Inside sales',
+    href: '/crm/close',
+    image: '/images/close.jpg',
+    imageBg: '#F4F0FF',
   },
 ];
 
@@ -256,24 +239,48 @@ export default function HomePage() {
                   </Link>
                 </div>
               </div>
-             <div className="grid grid-cols-2 gap-3">
-  {crms.map((c) => (
-    <Link key={c.name} href={c.href}
-      className="card group p-5 rounded-2xl border border-[#9CCC65]/40 bg-white transition-all duration-300 hover:border-[#9CCC65] hover:-translate-y-1 hover:bg-[#9CCC65]/5 hover:shadow-[0_16px_35px_rgba(0,0,0,0.08)] flex flex-col gap-3">
-      <div
-        className="w-14 h-14 rounded-2xl border border-black/5 shadow-[0_8px_22px_rgba(0,0,0,0.08)] flex items-center justify-center flex-shrink-0 overflow-hidden transition-transform duration-300 group-hover:scale-105"
-        style={{ background: c.iconBg }}
-      >
-        {c.icon}
-      </div>
-      <div>
-        <div className="font-bold text-black text-lg leading-tight">{c.name}</div>
-        <div className="text-sm text-ink-60 mt-1">{c.tag}</div>
-      </div>
-      {c.badge && <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-md w-fit" style={{ background: '#f0f6e8', color: '#3B6D11' }}>Partner</span>}
-    </Link>
-  ))}
-</div>
+             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {crms.map((c) => (
+                  <Link
+                    key={c.name}
+                    href={c.href}
+                    className="card group relative overflow-hidden rounded-2xl border border-[#9CCC65]/35 bg-white p-5 transition-all duration-300 hover:-translate-y-1 hover:border-[#9CCC65] hover:bg-[#F8FBF3] hover:shadow-[0_18px_45px_rgba(43,76,19,0.12)]"
+                  >
+                    <div className="pointer-events-none absolute right-0 top-0 h-24 w-24 translate-x-8 -translate-y-8 rounded-full bg-[#9CCC65]/10 transition-transform duration-300 group-hover:scale-125" />
+
+                    <div className="relative flex items-center gap-4">
+                      <div
+                        className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl border border-black/5 bg-white shadow-[0_10px_28px_rgba(0,0,0,0.08)] transition-all duration-300 group-hover:scale-105 group-hover:shadow-[0_14px_34px_rgba(0,0,0,0.12)]"
+                        style={{ background: c.imageBg }}
+                      >
+                        <img
+                          src={c.image}
+                          alt={`${c.name} logo`}
+                          className="h-10 w-10 object-contain"
+                        />
+                      </div>
+
+                      <div className="min-w-0 text-left">
+                        <div className="font-bold text-black text-lg leading-tight transition-colors duration-300 group-hover:text-[#558B2F]">
+                          {c.name}
+                        </div>
+                        <div className="text-sm text-ink-60 mt-1">
+                          {c.tag}
+                        </div>
+
+                        {c.badge && (
+                          <span
+                            className="mt-3 inline-flex w-fit items-center rounded-md px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider"
+                            style={{ background: '#f0f6e8', color: '#3B6D11' }}
+                          >
+                            Partner
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  </Link>
+                ))}
+              </div>
             </div>
           </div>
         </section>
