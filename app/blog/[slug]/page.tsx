@@ -121,7 +121,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
                 </span>
                 <div>
                   <div className="text-sm text-white font-semibold">{post.author_name || 'Matthew Piwko'}</div>
-                  <div className="text-xs text-white/60">Author, Automation Consulting Services</div>
+                  <div className="text-xs text-white/60">Author, Semantic SEO Strategist</div>
                 </div>
               </div>
             </div>
