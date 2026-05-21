@@ -69,7 +69,11 @@ export default function AboutPage() {
               <div className="lg:col-span-4">
                 <div className="card overflow-hidden sticky top-24">
                   <div className="relative w-full h-[320px] sm:h-[380px] lg:h-[420px] bg-ink-5">
-                    <Image src="/math.jpg" alt="Matthew Piwko" fill className="object-cover object-top" priority />
+                    <img 
+  src="/images/matt.png" 
+  alt="Author" 
+  className="w-full h-auto rounded-2xl"
+/>
                   </div>
                   <div className="p-7">
                     <div className="mb-5">
