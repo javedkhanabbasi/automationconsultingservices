@@ -68,11 +68,14 @@ export default function AboutPage() {
             <div className="grid lg:grid-cols-12 gap-12 items-start">
               <div className="lg:col-span-4">
                 <div className="card overflow-hidden sticky top-24">
-                <div className="relative w-full h-[320px] sm:h-[380px] lg:h-[420px] bg-ink-5">
-  <img 
-    src="/images/matt.png" 
-    alt="Author" 
-    className="w-full h-auto rounded-2xl"
+               <div className="relative w-full h-[320px] sm:h-[380px] lg:h-[420px] bg-ink-5 overflow-hidden rounded-t-2xl">
+  <Image
+    src="/images/matt.png"
+    alt="Matthew Piwko"
+    fill
+    priority
+    sizes="(max-width: 1024px) 100vw, 33vw"
+    className="object-cover object-center"
   />
 </div>
                   <div className="p-7">
