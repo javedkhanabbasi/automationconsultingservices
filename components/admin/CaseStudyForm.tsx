@@ -304,7 +304,7 @@ export default function CaseStudyForm({ initialData, mode }: { initialData?: Cas
 
           <SeoPanel
             values={{ meta_title: data.meta_title, meta_description: data.meta_description, focus_keyword: data.focus_keyword, og_image_url: data.og_image_url }}
-            onChange={(field, value) => update(field as keyof CaseStudyFormData, value)}
+            onChange={(field, value) => update(field as keyof CaseStudyFormData, value as CaseStudyFormData[keyof CaseStudyFormData])}
           />
         </div>
 
