@@ -98,9 +98,11 @@ export default function RichTextEditor({ value, onChange, placeholder }: RichTex
     }`;
 
   return (
-    <div className="border border-ink-20 rounded-md overflow-hidden bg-white">
-      {/* Toolbar */}
-      <div className="border-b border-ink-10 bg-ink-5 px-3 py-2 flex flex-wrap items-center gap-1">
+    <div className="border border-ink-20 rounded-md bg-white">
+      {/* Toolbar — sticky so it stays visible while scrolling the content.
+          If your admin layout has a fixed top bar, change `top-0` to e.g. `top-16`
+          so the toolbar parks just below it instead of sliding underneath. */}
+      <div className="sticky top-0 z-20 rounded-t-md border-b border-ink-10 bg-[#9CCC65] px-3 py-2 flex flex-wrap items-center gap-1">
         <button type="button" onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()} className={btnClass(editor.isActive('heading', { level: 2 }))}>H2</button>
         <button type="button" onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()} className={btnClass(editor.isActive('heading', { level: 3 }))}>H3</button>
         <button type="button" onClick={() => editor.chain().focus().toggleHeading({ level: 4 }).run()} className={btnClass(editor.isActive('heading', { level: 4 }))}>H4</button>
@@ -139,7 +141,7 @@ export default function RichTextEditor({ value, onChange, placeholder }: RichTex
         .prose-editor hr { border: none; border-top: 1px solid rgba(0,0,0,0.1); margin: 1.5rem 0; }
         .prose-editor strong { font-weight: 700; color: #000; }
         .prose-editor em { font-style: italic; }
-        .prose-editor code { background: rgba(0,0,0,0.05); padding: 0.125rem 0.375rem; border-radius: 0.25rem; font-size: 0.875em; }
+        .prose-editor code { background: rgba(90, 213, 60, 0.05); padding: 0.125rem 0.375rem; border-radius: 0.25rem; font-size: 0.875em; }
         .prose-editor p.is-editor-empty:first-child::before {
           content: attr(data-placeholder);
           float: left;

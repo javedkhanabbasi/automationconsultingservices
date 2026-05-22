@@ -15,6 +15,9 @@ interface Category {
   slug: string;
 }
 
+// Available authors (add/remove here whenever you like)
+const AUTHORS = ['Matthew Piwko', 'Usman Ishaq'];
+
 export interface BlogFormData {
   id?: string;
   slug: string;
@@ -34,7 +37,8 @@ export interface BlogFormData {
   focus_keyword: string;
   og_image_url: string;
   canonical_url: string;
-  status: 'draft' | 'published' | 'archived';
+  scheduled_for: string; // local 'YYYY-MM-DDTHH:mm' for the input, ISO is stored in DB
+  status: 'draft' | 'published' | 'scheduled' | 'archived';
   featured: boolean;
 }
 
@@ -48,12 +52,31 @@ const EMPTY: BlogFormData = {
   featured_image_url: '', featured_image_alt: '', category_id: null, category_name: '',
   tags: [], author_name: 'Matthew Piwko', reading_time: '',
   meta_title: '', meta_description: '', focus_keyword: '', og_image_url: '', canonical_url: '',
-  status: 'draft', featured: false,
+  scheduled_for: '', status: 'draft', featured: false,
 };
+
+// Convert an ISO/DB timestamp to the value a <input type="datetime-local"> expects (local time).
+function toLocalInput(value?: string | null): string {
+  if (!value) return '';
+  const d = new Date(value);
+  if (isNaN(d.getTime())) return '';
+  const offset = d.getTimezoneOffset();
+  return new Date(d.getTime() - offset * 60000).toISOString().slice(0, 16);
+}
+
+// Default schedule time = 1 hour from now (in local time for the input).
+// Guarantees a valid future value so users never hit the AM/PM past-time error.
+function defaultScheduleTime(): string {
+  return toLocalInput(new Date(Date.now() + 60 * 60 * 1000).toISOString());
+}
 
 export default function BlogForm({ initialData, mode }: BlogFormProps) {
   const router = useRouter();
-  const [data, setData] = useState<BlogFormData>(initialData || EMPTY);
+  const [data, setData] = useState<BlogFormData>(
+    initialData
+      ? { ...initialData, scheduled_for: toLocalInput(initialData.scheduled_for) }
+      : EMPTY
+  );
   const [categories, setCategories] = useState<Category[]>([]);
   const [saving, setSaving] = useState(false);
   const [autoSlug, setAutoSlug] = useState(mode === 'new');
@@ -68,6 +91,18 @@ export default function BlogForm({ initialData, mode }: BlogFormProps) {
 
   const update = <K extends keyof BlogFormData>(key: K, value: BlogFormData[K]) => {
     setData((prev) => ({ ...prev, [key]: value }));
+  };
+
+  // Changing status — when switching to "scheduled" with no time yet, pre-fill +1 hour.
+  const onStatusChange = (next: BlogFormData['status']) => {
+    setData((prev) => ({
+      ...prev,
+      status: next,
+      scheduled_for:
+        next === 'scheduled' && !prev.scheduled_for
+          ? defaultScheduleTime()
+          : prev.scheduled_for,
+    }));
   };
 
   const onTitleChange = (title: string) => {
@@ -101,16 +136,33 @@ export default function BlogForm({ initialData, mode }: BlogFormProps) {
     setData((prev) => ({ ...prev, tags }));
   };
 
-  const save = async (publishStatus?: 'draft' | 'published') => {
+  const save = async (action: 'draft' | 'published' | 'scheduled') => {
     if (!data.title.trim()) { alert('Title is required'); return; }
     if (!data.slug.trim()) { alert('Slug is required'); return; }
 
+    if (action === 'scheduled') {
+      if (!data.scheduled_for) { alert('Pick a date & time to schedule the post'); return; }
+      if (new Date(data.scheduled_for).getTime() <= Date.now()) {
+        alert('Scheduled time must be in the future'); return;
+      }
+    }
+
     setSaving(true);
     const supabase = createClient();
+
     const payload = {
       ...data,
-      status: publishStatus || data.status,
-      published_at: (publishStatus === 'published' && !initialData?.id) ? new Date().toISOString() : undefined,
+      status: action,
+      // store ISO when scheduled, otherwise clear it
+      scheduled_for:
+        action === 'scheduled' && data.scheduled_for
+          ? new Date(data.scheduled_for).toISOString()
+          : null,
+      // only stamp published_at the first time a brand-new post is published
+      published_at:
+        action === 'published' && !initialData?.id
+          ? new Date().toISOString()
+          : undefined,
     };
 
     const result = mode === 'new'
@@ -128,7 +180,7 @@ export default function BlogForm({ initialData, mode }: BlogFormProps) {
       router.push(`/admin/blog/${result.data.id}`);
     } else {
       router.refresh();
-      alert('Saved successfully');
+      alert(action === 'scheduled' ? 'Post scheduled' : 'Saved successfully');
     }
   };
 
@@ -158,9 +210,15 @@ export default function BlogForm({ initialData, mode }: BlogFormProps) {
           <button onClick={() => save('draft')} disabled={saving} className="btn-ghost text-sm">
             {saving ? 'Saving...' : 'Save draft'}
           </button>
-          <button onClick={() => save('published')} disabled={saving} className="btn-primary text-sm">
-            {saving ? 'Saving...' : data.status === 'published' ? 'Update published' : 'Publish'}
-          </button>
+          {data.status === 'scheduled' ? (
+            <button onClick={() => save('scheduled')} disabled={saving} className="btn-primary text-sm">
+              {saving ? 'Saving...' : 'Schedule'}
+            </button>
+          ) : (
+            <button onClick={() => save('published')} disabled={saving} className="btn-primary text-sm">
+              {saving ? 'Saving...' : data.status === 'published' ? 'Update published' : 'Publish'}
+            </button>
+          )}
         </div>
       </div>
 
@@ -243,14 +301,30 @@ export default function BlogForm({ initialData, mode }: BlogFormProps) {
                 <label className="block text-xs font-bold text-black uppercase tracking-wider mb-2">Status</label>
                 <select
                   value={data.status}
-                  onChange={(e) => update('status', e.target.value as 'draft' | 'published' | 'archived')}
+                  onChange={(e) => onStatusChange(e.target.value as BlogFormData['status'])}
                   className="w-full px-4 py-2.5 border border-ink-20 rounded-md text-black focus:border-black focus:outline-none text-sm bg-white"
                 >
                   <option value="draft">Draft</option>
+                  <option value="scheduled">Scheduled</option>
                   <option value="published">Published</option>
                   <option value="archived">Archived</option>
                 </select>
               </div>
+
+              {data.status === 'scheduled' && (
+                <div>
+                  <label className="block text-xs font-bold text-black uppercase tracking-wider mb-2">Publish date &amp; time</label>
+                  <input
+                    type="datetime-local"
+                    value={data.scheduled_for}
+                    min={toLocalInput(new Date().toISOString())}
+                    onChange={(e) => update('scheduled_for', e.target.value)}
+                    className="w-full px-4 py-2.5 border border-ink-20 rounded-md text-black focus:border-black focus:outline-none text-sm bg-white"
+                  />
+                  <p className="text-xs text-ink-50 mt-1">Post will go live automatically at this time.</p>
+                </div>
+              )}
+
               <label className="flex items-center gap-3 cursor-pointer">
                 <input type="checkbox" checked={data.featured} onChange={(e) => update('featured', e.target.checked)} />
                 <span className="text-sm text-black">Feature this post on blog index</span>
@@ -296,12 +370,15 @@ export default function BlogForm({ initialData, mode }: BlogFormProps) {
               </div>
               <div>
                 <label className="block text-xs font-bold text-black uppercase tracking-wider mb-2">Author</label>
-                <input
-                  type="text"
+                <select
                   value={data.author_name}
                   onChange={(e) => update('author_name', e.target.value)}
-                  className="w-full px-4 py-2.5 border border-ink-20 rounded-md text-black focus:border-black focus:outline-none text-sm"
-                />
+                  className="w-full px-4 py-2.5 border border-ink-20 rounded-md text-black focus:border-black focus:outline-none text-sm bg-white"
+                >
+                  {AUTHORS.map((name) => (
+                    <option key={name} value={name}>{name}</option>
+                  ))}
+                </select>
               </div>
             </div>
           </div>

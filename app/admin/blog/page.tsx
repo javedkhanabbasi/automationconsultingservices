@@ -2,11 +2,28 @@ export const dynamic = 'force-dynamic';
 import Link from 'next/link';
 import { createClient } from '@/lib/supabase/server';
 
+// Badge colour per status
+function statusBadge(status: string) {
+  switch (status) {
+    case 'published': return 'bg-lime text-black';
+    case 'scheduled': return 'bg-amber-200 text-amber-900';
+    case 'archived': return 'bg-ink-10 text-ink-60';
+    default: return 'bg-ink-10 text-black'; // draft
+  }
+}
+
+// Short, readable date+time for scheduled posts
+function formatScheduled(value: string) {
+  return new Date(value).toLocaleString('en-US', {
+    month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit',
+  });
+}
+
 export default async function BlogListPage() {
   const supabase = createClient();
   const { data: posts } = await supabase
     .from('posts')
-    .select('id, title, slug, status, featured, category_name, updated_at, published_at')
+    .select('id, title, slug, status, featured, category_name, updated_at, published_at, scheduled_for')
     .order('updated_at', { ascending: false });
 
   return (
@@ -46,9 +63,12 @@ export default async function BlogListPage() {
                       </td>
                       <td className="px-6 py-4 text-sm text-ink-70">{p.category_name || '—'}</td>
                       <td className="px-6 py-4">
-                        <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded ${p.status === 'published' ? 'bg-lime text-black' : 'bg-ink-10 text-black'}`}>
+                        <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded ${statusBadge(p.status)}`}>
                           {p.status}
                         </span>
+                        {p.status === 'scheduled' && p.scheduled_for && (
+                          <div className="text-xs text-ink-50 mt-1">→ {formatScheduled(p.scheduled_for)}</div>
+                        )}
                       </td>
                       <td className="px-6 py-4 text-sm text-ink-60">{new Date(p.updated_at).toLocaleDateString()}</td>
                       <td className="px-6 py-4 text-right">
@@ -74,9 +94,12 @@ export default async function BlogListPage() {
                       <div className="text-xs text-ink-50 mt-1">{p.category_name || '—'} · {new Date(p.updated_at).toLocaleDateString()}</div>
                     </div>
                     <div className="flex flex-col items-end gap-2 shrink-0">
-                      <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded ${p.status === 'published' ? 'bg-lime text-black' : 'bg-ink-10 text-black'}`}>
+                      <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded ${statusBadge(p.status)}`}>
                         {p.status}
                       </span>
+                      {p.status === 'scheduled' && p.scheduled_for && (
+                        <span className="text-[10px] text-ink-50">{formatScheduled(p.scheduled_for)}</span>
+                      )}
                       <span className="text-xs font-semibold text-black">Edit →</span>
                     </div>
                   </Link>

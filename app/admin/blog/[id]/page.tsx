@@ -28,6 +28,7 @@ export default async function EditBlogPostPage({ params }: { params: { id: strin
     focus_keyword: post.focus_keyword || '',
     og_image_url: post.og_image_url || '',
     canonical_url: post.canonical_url || '',
+    scheduled_for: post.scheduled_for ?? '',
     status: post.status || 'draft',
     featured: post.featured || false,
   };
