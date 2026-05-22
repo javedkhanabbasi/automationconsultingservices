@@ -6,6 +6,8 @@ export function buildMetadata(input: {
   description: string;
   path: string;
   image?: string;
+  noIndex?: boolean;
+  noFollow?: boolean;
 }): Metadata {
   const url = `${siteConfig.url}${input.path}`;
   const images = input.image ? [{ url: input.image }] : undefined;
@@ -13,6 +15,13 @@ export function buildMetadata(input: {
     title: input.title,
     description: input.description,
     alternates: { canonical: url },
+    // robots meta — only added when explicitly set; defaults to index/follow otherwise
+    ...((input.noIndex || input.noFollow) && {
+      robots: {
+        index: !input.noIndex,
+        follow: !input.noFollow,
+      },
+    }),
     openGraph: {
       title: input.title,
       description: input.description,

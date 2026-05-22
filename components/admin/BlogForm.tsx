@@ -37,6 +37,8 @@ export interface BlogFormData {
   focus_keyword: string;
   og_image_url: string;
   canonical_url: string;
+  no_index: boolean;
+  no_follow: boolean;
   scheduled_for: string; // local 'YYYY-MM-DDTHH:mm' for the input, ISO is stored in DB
   status: 'draft' | 'published' | 'scheduled' | 'archived';
   featured: boolean;
@@ -52,6 +54,7 @@ const EMPTY: BlogFormData = {
   featured_image_url: '', featured_image_alt: '', category_id: null, category_name: '',
   tags: [], author_name: 'Matthew Piwko', reading_time: '',
   meta_title: '', meta_description: '', focus_keyword: '', og_image_url: '', canonical_url: '',
+  no_index: false, no_follow: false,
   scheduled_for: '', status: 'draft', featured: false,
 };
 
@@ -286,8 +289,10 @@ export default function BlogForm({ initialData, mode }: BlogFormProps) {
               focus_keyword: data.focus_keyword,
               og_image_url: data.og_image_url,
               canonical_url: data.canonical_url,
+              no_index: data.no_index,
+              no_follow: data.no_follow,
             }}
-            onChange={(field, value) => update(field as keyof BlogFormData, value)}
+            onChange={(field, value) => update(field as keyof BlogFormData, value as BlogFormData[keyof BlogFormData])}
             showCanonical
           />
         </div>

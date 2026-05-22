@@ -1,20 +1,26 @@
 'use client';
 
+import { useState } from 'react';
+
 interface SeoFields {
   meta_title: string;
   meta_description: string;
   focus_keyword: string;
   og_image_url?: string;
   canonical_url?: string;
+  no_index?: boolean;
+  no_follow?: boolean;
 }
 
 interface SeoPanelProps {
   values: SeoFields;
-  onChange: (field: keyof SeoFields, value: string) => void;
+  onChange: (field: keyof SeoFields, value: string | boolean) => void;
   showCanonical?: boolean;
 }
 
 export default function SeoPanel({ values, onChange, showCanonical = false }: SeoPanelProps) {
+  const [advancedOpen, setAdvancedOpen] = useState(false);
+
   const titleLen = values.meta_title?.length || 0;
   const descLen = values.meta_description?.length || 0;
   const titleStatus = titleLen === 0 ? 'empty' : titleLen < 50 ? 'short' : titleLen <= 60 ? 'good' : 'long';
@@ -27,7 +33,9 @@ export default function SeoPanel({ values, onChange, showCanonical = false }: Se
     <div className="card p-6">
       <div className="flex items-center justify-between mb-5">
         <h3 className="text-lg font-bold text-black">SEO</h3>
-        <span className="text-xs text-ink-50 font-semibold">Indexed by Google</span>
+        <span className="text-xs text-ink-50 font-semibold">
+          {values.no_index ? 'Hidden from Google' : 'Indexed by Google'}
+        </span>
       </div>
 
       <div className="space-y-5">
@@ -111,6 +119,56 @@ export default function SeoPanel({ values, onChange, showCanonical = false }: Se
             <div className="text-lg font-medium text-[#1a0dab] leading-tight">{values.meta_title || 'Page title appears here'}</div>
             <div className="text-sm text-ink-70 leading-snug">{values.meta_description || 'Meta description appears here.'}</div>
           </div>
+        </div>
+
+        {/* ADVANCED (Yoast-style) */}
+        <div className="border-t border-ink-10 pt-4">
+          <button
+            type="button"
+            onClick={() => setAdvancedOpen((v) => !v)}
+            className="flex items-center justify-between w-full text-left"
+          >
+            <span className="text-xs font-bold text-black uppercase tracking-wider">Advanced</span>
+            <span className="text-ink-50 text-sm">{advancedOpen ? '▲' : '▼'}</span>
+          </button>
+
+          {advancedOpen && (
+            <div className="space-y-5 mt-4">
+              <div>
+                <label className="block text-xs font-bold text-black uppercase tracking-wider mb-2">
+                  Allow search engines to show this post in results?
+                </label>
+                <select
+                  value={values.no_index ? 'no' : 'yes'}
+                  onChange={(e) => onChange('no_index', e.target.value === 'no')}
+                  className="w-full px-4 py-2.5 border border-ink-20 rounded-md text-black focus:border-black focus:outline-none text-sm bg-white"
+                >
+                  <option value="yes">Yes (index)</option>
+                  <option value="no">No (noindex)</option>
+                </select>
+                <p className="text-xs text-ink-50 mt-1.5">
+                  &ldquo;No&rdquo; tells Google not to show this page in search. Use for thin or private pages.
+                </p>
+              </div>
+
+              <div>
+                <label className="block text-xs font-bold text-black uppercase tracking-wider mb-2">
+                  Should search engines follow links on this post?
+                </label>
+                <select
+                  value={values.no_follow ? 'no' : 'yes'}
+                  onChange={(e) => onChange('no_follow', e.target.value === 'no')}
+                  className="w-full px-4 py-2.5 border border-ink-20 rounded-md text-black focus:border-black focus:outline-none text-sm bg-white"
+                >
+                  <option value="yes">Yes (follow)</option>
+                  <option value="no">No (nofollow)</option>
+                </select>
+                <p className="text-xs text-ink-50 mt-1.5">
+                  &ldquo;No&rdquo; stops link equity flowing from this page&rsquo;s links. Usually leave as &ldquo;Yes&rdquo;.
+                </p>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     </div>

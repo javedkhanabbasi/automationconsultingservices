@@ -7,6 +7,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import FinalCTA from '@/components/FinalCTA';
 import { createClient } from '@/lib/supabase/server';
+import Image from "next/image";
 
 export const dynamic = 'force-dynamic';
 export const revalidate = 60;
@@ -26,7 +27,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   const supabase = createClient();
   const { data: post } = await supabase
     .from('posts')
-    .select('title, excerpt, meta_title, meta_description, og_image_url, canonical_url, slug, featured_image_url')
+    .select('title, excerpt, meta_title, meta_description, og_image_url, canonical_url, slug, featured_image_url, no_index, no_follow')
     .eq('slug', params.slug)
     .eq('status', 'published')
     .single();
@@ -38,6 +39,8 @@ export async function generateMetadata({ params }: { params: { slug: string } })
     description: post.meta_description || post.excerpt || '',
     path: `/blog/${post.slug}`,
     image: post.og_image_url || post.featured_image_url || undefined,
+    noIndex: post.no_index ?? false,
+    noFollow: post.no_follow ?? false,
   });
 }
 
@@ -116,12 +119,23 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
               <h1 className="text-4xl lg:text-5xl font-bold text-white leading-[1.1] mb-6">{post.title}</h1>
               {post.excerpt && <p className="text-lg text-white/80 leading-relaxed mb-6">{post.excerpt}</p>}
               <div className="flex items-center gap-3">
-                <span className="w-10 h-10 rounded-full bg-lime text-black flex items-center justify-center font-bold">
-                  {(post.author_name || 'Matthew Piwko').split(' ').map((n: string) => n[0]).join('')}
-                </span>
-                <div>
-                  <div className="text-sm text-white font-semibold">{post.author_name || 'Matthew Piwko'}</div>
-                  <div className="text-xs text-white/60">Author, Semantic SEO Strategist</div>
+                <div className="relative w-12 h-12 rounded-full overflow-hidden border border-white/20 shrink-0">
+                  <Image
+                    src="/images/UI.png"
+                    alt={post.author_name || "Author"}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+
+                <div className="flex flex-col">
+                  <div className="text-sm text-white font-semibold leading-none">
+                    {post.author_name || "Usman Ishaq"}
+                  </div>
+
+                  <div className="text-xs text-white/60 mt-1">
+                    Author, Semantic SEO Strategist
+                  </div>
                 </div>
               </div>
             </div>

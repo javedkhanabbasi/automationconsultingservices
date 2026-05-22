@@ -1,12 +1,123 @@
 'use client';
 
-import { useEditor, EditorContent } from '@tiptap/react';
+import { useEditor, EditorContent, ReactNodeViewRenderer, NodeViewWrapper, type NodeViewProps } from '@tiptap/react';
 import StarterKit from '@tiptap/starter-kit';
 import Image from '@tiptap/extension-image';
 import Link from '@tiptap/extension-link';
 import Placeholder from '@tiptap/extension-placeholder';
 import { useCallback, useRef } from 'react';
 import { createClient } from '@/lib/supabase/client';
+
+/* ----------------------------------------------------------------
+   Resizable image (WordPress-style): click an image to select it,
+   then drag the corner handle or use the S / M / L / Full buttons.
+   The chosen width is saved as <img width="..."> inside the content.
+------------------------------------------------------------------ */
+
+const presetBtn: React.CSSProperties = {
+  color: '#fff', background: 'transparent', border: 'none', cursor: 'pointer',
+  fontSize: 11, fontWeight: 700, padding: '2px 6px', borderRadius: 4, lineHeight: 1.2,
+};
+
+function ResizableImageView({ node, updateAttributes, selected }: NodeViewProps) {
+  const imgRef = useRef<HTMLImageElement>(null);
+
+  const onPointerDown = (e: React.PointerEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const startX = e.clientX;
+    const startWidth = imgRef.current?.offsetWidth || 0;
+    document.body.style.userSelect = 'none';
+
+    const onMove = (ev: PointerEvent) => {
+      const delta = ev.clientX - startX;
+      const newWidth = Math.max(60, Math.round(startWidth + delta));
+      updateAttributes({ width: newWidth });
+    };
+    const onUp = () => {
+      document.body.style.userSelect = '';
+      window.removeEventListener('pointermove', onMove);
+      window.removeEventListener('pointerup', onUp);
+    };
+    window.addEventListener('pointermove', onMove);
+    window.addEventListener('pointerup', onUp);
+  };
+
+  const setPreset = (w: number | null) => updateAttributes({ width: w });
+  const keepSelection = (e: React.MouseEvent) => e.preventDefault();
+
+  return (
+    <NodeViewWrapper
+      style={{ position: 'relative', width: 'fit-content', maxWidth: '100%', margin: '1rem 0' }}
+    >
+      <img
+        ref={imgRef}
+        src={node.attrs.src}
+        alt={node.attrs.alt || ''}
+        title={node.attrs.title || ''}
+        width={node.attrs.width || undefined}
+        style={{
+          maxWidth: '100%', height: 'auto', display: 'block', borderRadius: '0.5rem',
+          outline: selected ? '2px solid #000' : 'none', outlineOffset: 2,
+        }}
+      />
+
+      {selected && (
+        <>
+          {/* size preset toolbar */}
+          <span
+            contentEditable={false}
+            onMouseDown={keepSelection}
+            style={{
+              position: 'absolute', top: 6, left: 6, display: 'flex', gap: 4,
+              background: 'rgba(0,0,0,0.75)', borderRadius: 6, padding: '2px 4px',
+            }}
+          >
+            <button type="button" onMouseDown={keepSelection} onClick={() => setPreset(250)} style={presetBtn}>S</button>
+            <button type="button" onMouseDown={keepSelection} onClick={() => setPreset(450)} style={presetBtn}>M</button>
+            <button type="button" onMouseDown={keepSelection} onClick={() => setPreset(700)} style={presetBtn}>L</button>
+            <button type="button" onMouseDown={keepSelection} onClick={() => setPreset(null)} style={presetBtn}>Full</button>
+          </span>
+
+          {/* corner drag handle */}
+          <span
+            contentEditable={false}
+            onPointerDown={onPointerDown}
+            style={{
+              position: 'absolute', right: -7, bottom: -7, width: 16, height: 16,
+              background: '#000', border: '2px solid #fff', borderRadius: '50%',
+              cursor: 'nwse-resize', touchAction: 'none',
+            }}
+          />
+        </>
+      )}
+    </NodeViewWrapper>
+  );
+}
+
+const ResizableImage = Image.extend({
+  addAttributes() {
+    return {
+      ...this.parent?.(),
+      width: {
+        default: null,
+        parseHTML: (element) => {
+          const w = element.getAttribute('width');
+          return w ? parseInt(w, 10) : null;
+        },
+        renderHTML: (attributes) => {
+          if (!attributes.width) return {};
+          return { width: attributes.width };
+        },
+      },
+    };
+  },
+  addNodeView() {
+    return ReactNodeViewRenderer(ResizableImageView);
+  },
+});
+
+/* ---------------------------------------------------------------- */
 
 interface RichTextEditorProps {
   value: string;
@@ -22,7 +133,7 @@ export default function RichTextEditor({ value, onChange, placeholder }: RichTex
       StarterKit.configure({
         heading: { levels: [2, 3, 4] },
       }),
-      Image.configure({ inline: false, allowBase64: false }),
+      ResizableImage.configure({ inline: false, allowBase64: false }),
       Link.configure({ openOnClick: false, autolink: true }),
       Placeholder.configure({ placeholder: placeholder || 'Start writing...' }),
     ],
@@ -100,8 +211,7 @@ export default function RichTextEditor({ value, onChange, placeholder }: RichTex
   return (
     <div className="border border-ink-20 rounded-md bg-white">
       {/* Toolbar — sticky so it stays visible while scrolling the content.
-          If your admin layout has a fixed top bar, change `top-0` to e.g. `top-16`
-          so the toolbar parks just below it instead of sliding underneath. */}
+          If your admin layout has a fixed top bar, change `top-0` to e.g. `top-16`. */}
       <div className="sticky top-0 z-20 rounded-t-md border-b border-ink-10 bg-[#9CCC65] px-3 py-2 flex flex-wrap items-center gap-1">
         <button type="button" onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()} className={btnClass(editor.isActive('heading', { level: 2 }))}>H2</button>
         <button type="button" onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()} className={btnClass(editor.isActive('heading', { level: 3 }))}>H3</button>
@@ -137,11 +247,11 @@ export default function RichTextEditor({ value, onChange, placeholder }: RichTex
         .prose-editor li { margin-bottom: 0.5rem; line-height: 1.7; color: rgba(0,0,0,0.8); }
         .prose-editor blockquote { border-left: 4px solid #9ccc65; padding-left: 1rem; margin: 1rem 0; font-style: italic; color: rgba(0,0,0,0.7); }
         .prose-editor a { color: #000; text-decoration: underline; text-decoration-color: #9ccc65; text-decoration-thickness: 2px; }
-        .prose-editor img { max-width: 100%; height: auto; border-radius: 0.5rem; margin: 1rem 0; }
+        .prose-editor img { max-width: 100%; height: auto; border-radius: 0.5rem; }
         .prose-editor hr { border: none; border-top: 1px solid rgba(0,0,0,0.1); margin: 1.5rem 0; }
         .prose-editor strong { font-weight: 700; color: #000; }
         .prose-editor em { font-style: italic; }
-        .prose-editor code { background: rgba(90, 213, 60, 0.05); padding: 0.125rem 0.375rem; border-radius: 0.25rem; font-size: 0.875em; }
+        .prose-editor code { background: rgba(0,0,0,0.05); padding: 0.125rem 0.375rem; border-radius: 0.25rem; font-size: 0.875em; }
         .prose-editor p.is-editor-empty:first-child::before {
           content: attr(data-placeholder);
           float: left;
