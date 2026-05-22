@@ -4,9 +4,12 @@ import { services } from '@/content/services';
 import { caseStudies } from '@/content/case-studies';
 import { crmPlatforms } from '@/content/crm';
 import { crmComparisons } from '@/content/crm-comparisons';
-import { blogPosts } from '@/content/blog-posts';
+import { createClient } from '@/lib/supabase/server';
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export const dynamic = 'force-dynamic';
+export const revalidate = 3600;
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = siteConfig.url;
   const now = new Date().toISOString();
 
@@ -60,12 +63,52 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  const blogRoutes = blogPosts.map((p) => ({
-    url: `${base}/blog/${p.slug}`,
-    lastModified: p.modifiedTime || p.publishedTime,
-    changeFrequency: 'monthly' as const,
-    priority: 0.6,
-  }));
+  // Fetch blogs from Supabase (published only)
+  let blogRoutes: MetadataRoute.Sitemap = [];
+  try {
+    const supabase = createClient();
+    const { data: posts } = await supabase
+      .from('posts')
+      .select('slug, published_at, updated_at')
+      .eq('status', 'published');
 
-  return [...staticRoutes, ...serviceRoutes, ...crmRoutes, ...comparisonRoutes, ...caseStudyRoutes, ...blogRoutes];
+    blogRoutes = (posts || []).map((p) => ({
+      url: `${base}/blog/${p.slug}`,
+      lastModified: p.updated_at || p.published_at || now,
+      changeFrequency: 'monthly' as const,
+      priority: 0.6,
+    }));
+  } catch (err) {
+    // If Supabase fetch fails, return empty array — sitemap still generates
+    blogRoutes = [];
+  }
+
+  // Fetch case studies from Supabase (published only)
+  let dbCaseStudyRoutes: MetadataRoute.Sitemap = [];
+  try {
+    const supabase = createClient();
+    const { data: dbCases } = await supabase
+      .from('case_studies')
+      .select('slug, published_at, updated_at')
+      .eq('status', 'published');
+
+    dbCaseStudyRoutes = (dbCases || []).map((cs) => ({
+      url: `${base}/case-studies/${cs.slug}`,
+      lastModified: cs.updated_at || cs.published_at || now,
+      changeFrequency: 'monthly' as const,
+      priority: 0.7,
+    }));
+  } catch (err) {
+    dbCaseStudyRoutes = [];
+  }
+
+  return [
+    ...staticRoutes,
+    ...serviceRoutes,
+    ...crmRoutes,
+    ...comparisonRoutes,
+    ...caseStudyRoutes,
+    ...dbCaseStudyRoutes,
+    ...blogRoutes,
+  ];
 }
