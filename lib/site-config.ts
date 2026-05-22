@@ -13,7 +13,7 @@ export const siteConfig = {
     role: 'Founder & Lead Automation Architect',
     background: '10+ years software development',
     location: 'United States',
-    linkedin: 'https://www.linkedin.com/in/mpiwko',
+    linkedin: 'https://www.linkedin.com/in/matthew-piwko-6159b1122',
     email: '[email protected]',
   },
 
