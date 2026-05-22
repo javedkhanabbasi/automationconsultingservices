@@ -14,7 +14,11 @@ interface SeoFields {
 
 interface SeoPanelProps {
   values: SeoFields;
-  onChange: (field: keyof SeoFields, value: string | boolean) => void;
+  // Accepts any form's update(field, value). We pass strings for text fields and
+  // booleans for the noindex/nofollow toggles; the loose signature keeps every
+  // existing caller (Blog / Service / CaseStudy forms) type-compatible.
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  onChange: (field: any, value: any) => void;
   showCanonical?: boolean;
 }
 
@@ -28,6 +32,11 @@ export default function SeoPanel({ values, onChange, showCanonical = false }: Se
 
   const statusColor = (s: string) =>
     s === 'good' ? 'text-black bg-lime' : s === 'empty' ? 'text-black bg-ink-10' : 'text-white bg-black';
+
+  // Only show the Advanced (index/follow) section when the parent form actually
+  // tracks these fields — i.e. when canonical is enabled (the Blog form). This
+  // keeps Service/CaseStudy forms unchanged and avoids saving fields they lack.
+  const showAdvanced = showCanonical;
 
   return (
     <div className="card p-6">
@@ -121,55 +130,57 @@ export default function SeoPanel({ values, onChange, showCanonical = false }: Se
           </div>
         </div>
 
-        {/* ADVANCED (Yoast-style) */}
-        <div className="border-t border-ink-10 pt-4">
-          <button
-            type="button"
-            onClick={() => setAdvancedOpen((v) => !v)}
-            className="flex items-center justify-between w-full text-left"
-          >
-            <span className="text-xs font-bold text-black uppercase tracking-wider">Advanced</span>
-            <span className="text-ink-50 text-sm">{advancedOpen ? '▲' : '▼'}</span>
-          </button>
+        {/* ADVANCED (Yoast-style) — only for forms that track index/follow (Blog) */}
+        {showAdvanced && (
+          <div className="border-t border-ink-10 pt-4">
+            <button
+              type="button"
+              onClick={() => setAdvancedOpen((v) => !v)}
+              className="flex items-center justify-between w-full text-left"
+            >
+              <span className="text-xs font-bold text-black uppercase tracking-wider">Advanced</span>
+              <span className="text-ink-50 text-sm">{advancedOpen ? '▲' : '▼'}</span>
+            </button>
 
-          {advancedOpen && (
-            <div className="space-y-5 mt-4">
-              <div>
-                <label className="block text-xs font-bold text-black uppercase tracking-wider mb-2">
-                  Allow search engines to show this post in results?
-                </label>
-                <select
-                  value={values.no_index ? 'no' : 'yes'}
-                  onChange={(e) => onChange('no_index', e.target.value === 'no')}
-                  className="w-full px-4 py-2.5 border border-ink-20 rounded-md text-black focus:border-black focus:outline-none text-sm bg-white"
-                >
-                  <option value="yes">Yes (index)</option>
-                  <option value="no">No (noindex)</option>
-                </select>
-                <p className="text-xs text-ink-50 mt-1.5">
-                  &ldquo;No&rdquo; tells Google not to show this page in search. Use for thin or private pages.
-                </p>
-              </div>
+            {advancedOpen && (
+              <div className="space-y-5 mt-4">
+                <div>
+                  <label className="block text-xs font-bold text-black uppercase tracking-wider mb-2">
+                    Allow search engines to show this post in results?
+                  </label>
+                  <select
+                    value={values.no_index ? 'no' : 'yes'}
+                    onChange={(e) => onChange('no_index', e.target.value === 'no')}
+                    className="w-full px-4 py-2.5 border border-ink-20 rounded-md text-black focus:border-black focus:outline-none text-sm bg-white"
+                  >
+                    <option value="yes">Yes (index)</option>
+                    <option value="no">No (noindex)</option>
+                  </select>
+                  <p className="text-xs text-ink-50 mt-1.5">
+                    &ldquo;No&rdquo; tells Google not to show this page in search. Use for thin or private pages.
+                  </p>
+                </div>
 
-              <div>
-                <label className="block text-xs font-bold text-black uppercase tracking-wider mb-2">
-                  Should search engines follow links on this post?
-                </label>
-                <select
-                  value={values.no_follow ? 'no' : 'yes'}
-                  onChange={(e) => onChange('no_follow', e.target.value === 'no')}
-                  className="w-full px-4 py-2.5 border border-ink-20 rounded-md text-black focus:border-black focus:outline-none text-sm bg-white"
-                >
-                  <option value="yes">Yes (follow)</option>
-                  <option value="no">No (nofollow)</option>
-                </select>
-                <p className="text-xs text-ink-50 mt-1.5">
-                  &ldquo;No&rdquo; stops link equity flowing from this page&rsquo;s links. Usually leave as &ldquo;Yes&rdquo;.
-                </p>
+                <div>
+                  <label className="block text-xs font-bold text-black uppercase tracking-wider mb-2">
+                    Should search engines follow links on this post?
+                  </label>
+                  <select
+                    value={values.no_follow ? 'no' : 'yes'}
+                    onChange={(e) => onChange('no_follow', e.target.value === 'no')}
+                    className="w-full px-4 py-2.5 border border-ink-20 rounded-md text-black focus:border-black focus:outline-none text-sm bg-white"
+                  >
+                    <option value="yes">Yes (follow)</option>
+                    <option value="no">No (nofollow)</option>
+                  </select>
+                  <p className="text-xs text-ink-50 mt-1.5">
+                    &ldquo;No&rdquo; stops link equity flowing from this page&rsquo;s links. Usually leave as &ldquo;Yes&rdquo;.
+                  </p>
+                </div>
               </div>
-            </div>
-          )}
-        </div>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );
