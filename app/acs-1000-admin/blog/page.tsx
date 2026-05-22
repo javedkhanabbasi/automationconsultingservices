@@ -33,7 +33,7 @@ export default async function BlogListPage() {
           <h1 className="text-2xl sm:text-3xl font-bold text-black mb-1">Blog posts</h1>
           <p className="text-ink-60 text-sm">{posts?.length || 0} total</p>
         </div>
-        <Link href="/admin/blog/new" className="btn-primary">+ New post</Link>
+        <Link href="/acs-1000-admin/blog/new" className="btn-primary">+ New post</Link>
       </div>
 
       <div className="card overflow-hidden">
@@ -55,7 +55,7 @@ export default async function BlogListPage() {
                   {posts.map((p) => (
                     <tr key={p.id} className="border-b border-ink-10 hover:bg-ink-5">
                       <td className="px-6 py-4">
-                        <Link href={`/admin/blog/${p.id}`} className="font-semibold text-black hover:text-lime-dark">
+                        <Link href={`/acs-1000-admin/blog/${p.id}`} className="font-semibold text-black hover:text-lime-dark">
                           {p.title}
                           {p.featured && <span className="ml-2 text-[10px] font-bold uppercase tracking-wider bg-lime text-black px-2 py-0.5 rounded">Featured</span>}
                         </Link>
@@ -72,7 +72,7 @@ export default async function BlogListPage() {
                       </td>
                       <td className="px-6 py-4 text-sm text-ink-60">{new Date(p.updated_at).toLocaleDateString()}</td>
                       <td className="px-6 py-4 text-right">
-                        <Link href={`/admin/blog/${p.id}`} className="text-sm font-semibold text-black hover:text-lime-dark">Edit →</Link>
+                        <Link href={`/acs-1000-admin/blog/${p.id}`} className="text-sm font-semibold text-black hover:text-lime-dark">Edit →</Link>
                       </td>
                     </tr>
                   ))}
@@ -84,7 +84,7 @@ export default async function BlogListPage() {
             <ul className="sm:hidden divide-y divide-ink-10">
               {posts.map((p) => (
                 <li key={p.id}>
-                  <Link href={`/admin/blog/${p.id}`} className="flex items-center justify-between p-4 hover:bg-ink-5 transition-colors gap-3">
+                  <Link href={`/acs-1000-admin/blog/${p.id}`} className="flex items-center justify-between p-4 hover:bg-ink-5 transition-colors gap-3">
                     <div className="flex-1 min-w-0">
                       <div className="font-semibold text-black text-sm truncate">
                         {p.title}
@@ -112,7 +112,7 @@ export default async function BlogListPage() {
             <div className="text-4xl mb-3">✎</div>
             <h3 className="text-lg font-bold text-black mb-2">No posts yet</h3>
             <p className="text-ink-60 text-sm mb-5">Write your first blog post to get started.</p>
-            <Link href="/admin/blog/new" className="btn-primary">+ Write first post</Link>
+            <Link href="/acs-1000-admin/blog/new" className="btn-primary">+ Write first post</Link>
           </div>
         )}
       </div>

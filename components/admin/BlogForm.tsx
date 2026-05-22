@@ -180,7 +180,7 @@ export default function BlogForm({ initialData, mode }: BlogFormProps) {
     }
 
     if (mode === 'new' && result.data) {
-      router.push(`/admin/blog/${result.data.id}`);
+      router.push(`/acs-1000-admin/blog/${result.data.id}`);
     } else {
       router.refresh();
       alert(action === 'scheduled' ? 'Post scheduled' : 'Saved successfully');
@@ -193,7 +193,7 @@ export default function BlogForm({ initialData, mode }: BlogFormProps) {
     const supabase = createClient();
     const { error } = await supabase.from('posts').delete().eq('id', data.id);
     if (error) { alert('Delete failed: ' + error.message); return; }
-    router.push('/admin/blog');
+    router.push('/acs-1000-admin/blog');
   };
 
   return (
@@ -201,7 +201,7 @@ export default function BlogForm({ initialData, mode }: BlogFormProps) {
       {/* Header */}
       <div className="flex items-center justify-between mb-8 gap-4 flex-wrap">
         <div>
-          <Link href="/admin/blog" className="text-sm text-ink-60 hover:text-black">← Back to all posts</Link>
+          <Link href="/acs-1000-admin/blog" className="text-sm text-ink-60 hover:text-black">← Back to all posts</Link>
           <h1 className="text-3xl font-bold text-black mt-2">
             {mode === 'new' ? 'New blog post' : 'Edit blog post'}
           </h1>
@@ -361,7 +361,7 @@ export default function BlogForm({ initialData, mode }: BlogFormProps) {
                     <option key={c.id} value={c.id}>{c.name}</option>
                   ))}
                 </select>
-                <Link href="/admin/categories" className="text-xs text-ink-60 hover:text-black mt-1 inline-block">Manage categories →</Link>
+                <Link href="/acs-1000-admin/categories" className="text-xs text-ink-60 hover:text-black mt-1 inline-block">Manage categories →</Link>
               </div>
               <div>
                 <label className="block text-xs font-bold text-black uppercase tracking-wider mb-2">Tags</label>

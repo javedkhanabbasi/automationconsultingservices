@@ -33,7 +33,7 @@ export default async function ServicesListPage() {
                   {items.map((s) => (
                     <tr key={s.id} className="border-b border-ink-10 hover:bg-ink-5">
                       <td className="px-6 py-4">
-                        <Link href={`/admin/services/${s.id}`} className="font-semibold text-black hover:text-lime-dark">{s.name}</Link>
+                        <Link href={`/acs-1000-admin/services/${s.id}`} className="font-semibold text-black hover:text-lime-dark">{s.name}</Link>
                         <div className="text-xs text-ink-50 mt-0.5">{s.short_desc}</div>
                       </td>
                       <td className="px-6 py-4 text-sm text-ink-70">/services/{s.slug}</td>
@@ -41,7 +41,7 @@ export default async function ServicesListPage() {
                         <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded ${s.status === 'published' ? 'bg-lime text-black' : 'bg-ink-10 text-black'}`}>{s.status}</span>
                       </td>
                       <td className="px-6 py-4 text-right">
-                        <Link href={`/admin/services/${s.id}`} className="text-sm font-semibold text-black hover:text-lime-dark">Edit →</Link>
+                        <Link href={`/acs-1000-admin/services/${s.id}`} className="text-sm font-semibold text-black hover:text-lime-dark">Edit →</Link>
                       </td>
                     </tr>
                   ))}
@@ -53,7 +53,7 @@ export default async function ServicesListPage() {
             <ul className="sm:hidden divide-y divide-ink-10">
               {items.map((s) => (
                 <li key={s.id}>
-                  <Link href={`/admin/services/${s.id}`} className="flex items-center justify-between p-4 hover:bg-ink-5 transition-colors gap-3">
+                  <Link href={`/acs-1000-admin/services/${s.id}`} className="flex items-center justify-between p-4 hover:bg-ink-5 transition-colors gap-3">
                     <div className="flex-1 min-w-0">
                       <div className="font-semibold text-black text-sm truncate">{s.name}</div>
                       <div className="text-xs text-ink-50 mt-0.5 truncate">{s.short_desc}</div>

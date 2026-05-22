@@ -31,12 +31,12 @@ export default async function PagesListPage() {
                   {items.map((p) => (
                     <tr key={p.id} className="border-b border-ink-10 hover:bg-ink-5">
                       <td className="px-6 py-4">
-                        <Link href={`/admin/pages/${p.id}`} className="font-semibold text-black hover:text-lime-dark">{p.title}</Link>
+                        <Link href={`/acs-1000-admin/pages/${p.id}`} className="font-semibold text-black hover:text-lime-dark">{p.title}</Link>
                       </td>
                       <td className="px-6 py-4 text-sm text-ink-70">/{p.slug}</td>
                       <td className="px-6 py-4 text-sm text-ink-70 truncate max-w-md">{p.meta_title || '—'}</td>
                       <td className="px-6 py-4 text-right">
-                        <Link href={`/admin/pages/${p.id}`} className="text-sm font-semibold text-black hover:text-lime-dark">Edit →</Link>
+                        <Link href={`/acs-1000-admin/pages/${p.id}`} className="text-sm font-semibold text-black hover:text-lime-dark">Edit →</Link>
                       </td>
                     </tr>
                   ))}
@@ -48,7 +48,7 @@ export default async function PagesListPage() {
             <ul className="sm:hidden divide-y divide-ink-10">
               {items.map((p) => (
                 <li key={p.id}>
-                  <Link href={`/admin/pages/${p.id}`} className="flex items-center justify-between p-4 hover:bg-ink-5 transition-colors gap-3">
+                  <Link href={`/acs-1000-admin/pages/${p.id}`} className="flex items-center justify-between p-4 hover:bg-ink-5 transition-colors gap-3">
                     <div className="flex-1 min-w-0">
                       <div className="font-semibold text-black text-sm">{p.title}</div>
                       <div className="text-xs text-ink-50 mt-0.5">/{p.slug}</div>

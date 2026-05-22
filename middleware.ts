@@ -28,13 +28,13 @@ export async function middleware(request: NextRequest) {
 
   const { data: { user } } = await supabase.auth.getUser();
 
-  const isAdminRoute = request.nextUrl.pathname.startsWith('/admin');
-  const isLoginRoute = request.nextUrl.pathname === '/admin/login';
+  const isAdminRoute = request.nextUrl.pathname.startsWith('/acs-1000-admin');
+  const isLoginRoute = request.nextUrl.pathname === '/acs-1000-admin/login';
 
   // Block unauthenticated access to admin (except login page)
   if (isAdminRoute && !isLoginRoute && !user) {
     const redirectUrl = request.nextUrl.clone();
-    redirectUrl.pathname = '/admin/login';
+    redirectUrl.pathname = '/acs-1000-admin/login';
     redirectUrl.searchParams.set('redirect', request.nextUrl.pathname);
     return NextResponse.redirect(redirectUrl);
   }
@@ -42,7 +42,7 @@ export async function middleware(request: NextRequest) {
   // Already logged in users get redirected from login page
   if (isLoginRoute && user) {
     const redirectUrl = request.nextUrl.clone();
-    redirectUrl.pathname = '/admin';
+    redirectUrl.pathname = '/acs-1000-admin';
     return NextResponse.redirect(redirectUrl);
   }
 

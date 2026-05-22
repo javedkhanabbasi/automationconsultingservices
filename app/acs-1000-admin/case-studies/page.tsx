@@ -16,7 +16,7 @@ export default async function CaseStudiesListPage() {
           <h1 className="text-2xl sm:text-3xl font-bold text-black mb-1">Case studies</h1>
           <p className="text-ink-60 text-sm">{items?.length || 0} total</p>
         </div>
-        <Link href="/admin/case-studies/new" className="btn-primary">+ New case study</Link>
+        <Link href="/acs-1000-admin/case-studies/new" className="btn-primary">+ New case study</Link>
       </div>
 
       <div className="card overflow-hidden">
@@ -38,7 +38,7 @@ export default async function CaseStudiesListPage() {
                   {items.map((c) => (
                     <tr key={c.id} className="border-b border-ink-10 hover:bg-ink-5">
                       <td className="px-6 py-4">
-                        <Link href={`/admin/case-studies/${c.id}`} className="font-semibold text-black hover:text-lime-dark">
+                        <Link href={`/acs-1000-admin/case-studies/${c.id}`} className="font-semibold text-black hover:text-lime-dark">
                           {c.short_title}
                         </Link>
                         <div className="text-xs text-ink-50 mt-0.5">/{c.slug}</div>
@@ -51,7 +51,7 @@ export default async function CaseStudiesListPage() {
                         </span>
                       </td>
                       <td className="px-6 py-4 text-right">
-                        <Link href={`/admin/case-studies/${c.id}`} className="text-sm font-semibold text-black hover:text-lime-dark">Edit →</Link>
+                        <Link href={`/acs-1000-admin/case-studies/${c.id}`} className="text-sm font-semibold text-black hover:text-lime-dark">Edit →</Link>
                       </td>
                     </tr>
                   ))}
@@ -63,7 +63,7 @@ export default async function CaseStudiesListPage() {
             <ul className="sm:hidden divide-y divide-ink-10">
               {items.map((c) => (
                 <li key={c.id}>
-                  <Link href={`/admin/case-studies/${c.id}`} className="flex items-center justify-between p-4 hover:bg-ink-5 transition-colors gap-3">
+                  <Link href={`/acs-1000-admin/case-studies/${c.id}`} className="flex items-center justify-between p-4 hover:bg-ink-5 transition-colors gap-3">
                     <div className="flex-1 min-w-0">
                       <div className="font-semibold text-black text-sm truncate">{c.short_title}</div>
                       <div className="text-xs text-ink-50 mt-0.5 truncate">/{c.slug}</div>
@@ -84,7 +84,7 @@ export default async function CaseStudiesListPage() {
           <div className="p-8 sm:p-12 text-center">
             <div className="text-4xl mb-3">★</div>
             <h3 className="text-lg font-bold text-black mb-2">No case studies yet</h3>
-            <Link href="/admin/case-studies/new" className="btn-primary mt-4">+ Add first</Link>
+            <Link href="/acs-1000-admin/case-studies/new" className="btn-primary mt-4">+ Add first</Link>
           </div>
         )}
       </div>

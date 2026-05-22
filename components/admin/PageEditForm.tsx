@@ -48,7 +48,7 @@ export default function PageEditForm({ initialData }: { initialData: PageFormDat
     <div className="p-8 lg:p-12 max-w-7xl">
       <div className="flex items-center justify-between mb-8 gap-4 flex-wrap">
         <div>
-          <Link href="/admin/pages" className="text-sm text-ink-60 hover:text-black">← Back to pages</Link>
+          <Link href="/acs-1000-admin/pages" className="text-sm text-ink-60 hover:text-black">← Back to pages</Link>
           <h1 className="text-3xl font-bold text-black mt-2">Edit page: {data.title}</h1>
         </div>
         <button onClick={save} disabled={saving} className="btn-primary text-sm">

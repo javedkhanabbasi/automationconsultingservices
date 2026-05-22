@@ -6,14 +6,14 @@ import { useState, useEffect } from 'react';
 import { createClient } from '@/lib/supabase/client';
 
 const NAV = [
-  { label: 'Dashboard', href: '/admin', exact: true, icon: '⊟' },
-  { label: 'Blog posts', href: '/admin/blog', icon: '✎' },
-  { label: 'Case studies', href: '/admin/case-studies', icon: '★' },
-  { label: 'Services', href: '/admin/services', icon: '◈' },
-  { label: 'Pages', href: '/admin/pages', icon: '◻' },
-  { label: 'Media library', href: '/admin/media', icon: '📁' },
-  { label: 'Categories', href: '/admin/categories', icon: '⊞' },
-  { label: 'Settings', href: '/admin/settings', icon: '⚙' },
+  { label: 'Dashboard', href: '/acs-1000-admin', exact: true, icon: '⊟' },
+  { label: 'Blog posts', href: '/acs-1000-admin/blog', icon: '✎' },
+  { label: 'Case studies', href: '/acs-1000-admin/case-studies', icon: '★' },
+  { label: 'Services', href: '/acs-1000-admin/services', icon: '◈' },
+  { label: 'Pages', href: '/acs-1000-admin/pages', icon: '◻' },
+  { label: 'Media library', href: '/acs-1000-admin/media', icon: '📁' },
+  { label: 'Categories', href: '/acs-1000-admin/categories', icon: '⊞' },
+  { label: 'Settings', href: '/acs-1000-admin/settings', icon: '⚙' },
 ];
 
 export default function AdminSidebar({ userEmail }: { userEmail?: string }) {
@@ -39,7 +39,7 @@ export default function AdminSidebar({ userEmail }: { userEmail?: string }) {
   const handleSignOut = async () => {
     const supabase = createClient();
     await supabase.auth.signOut();
-    router.push('/admin/login');
+    router.push('/acs-1000-admin/login');
     router.refresh();
   };
 

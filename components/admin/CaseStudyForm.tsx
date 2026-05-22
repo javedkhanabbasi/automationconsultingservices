@@ -142,7 +142,7 @@ export default function CaseStudyForm({ initialData, mode }: { initialData?: Cas
     }
 
     if (mode === 'new' && result.data) {
-      router.push(`/admin/case-studies/${result.data.id}`);
+      router.push(`/acs-1000-admin/case-studies/${result.data.id}`);
     } else {
       router.refresh();
       alert('Saved successfully');
@@ -153,14 +153,14 @@ export default function CaseStudyForm({ initialData, mode }: { initialData?: Cas
     if (!data.id || !confirm('Delete this case study permanently?')) return;
     const supabase = createClient();
     await supabase.from('case_studies').delete().eq('id', data.id);
-    router.push('/admin/case-studies');
+    router.push('/acs-1000-admin/case-studies');
   };
 
   return (
     <div className="p-8 lg:p-12 max-w-7xl">
       <div className="flex items-center justify-between mb-8 gap-4 flex-wrap">
         <div>
-          <Link href="/admin/case-studies" className="text-sm text-ink-60 hover:text-black">← Back to all case studies</Link>
+          <Link href="/acs-1000-admin/case-studies" className="text-sm text-ink-60 hover:text-black">← Back to all case studies</Link>
           <h1 className="text-3xl font-bold text-black mt-2">{mode === 'new' ? 'New case study' : 'Edit case study'}</h1>
         </div>
         <div className="flex gap-2 flex-wrap">

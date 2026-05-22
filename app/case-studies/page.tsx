@@ -14,7 +14,7 @@ const supabase = createClient(
 );
 
 interface DbCase {
-  id: number;
+  id: string;
   title: string;
   short_title: string;
   slug: string;
@@ -25,9 +25,7 @@ interface DbCase {
   timeline: string;
   headline_metric: string;
   description: string;
-  result: string;
-  metric: string;
-  published: boolean;
+  status: 'draft' | 'published' | 'archived';
 }
 
 const patterns = [
@@ -51,7 +49,7 @@ export default function CaseStudiesIndex() {
     supabase
       .from('case_studies')
       .select('*')
-      .eq('published', true)
+      .eq('status', 'published')
       .order('created_at', { ascending: false })
       .then(({ data }) => { if (data) setDbCases(data); });
   }, []);

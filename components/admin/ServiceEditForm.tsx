@@ -66,7 +66,7 @@ export default function ServiceEditForm({ initialData }: { initialData: ServiceF
     <div className="p-8 lg:p-12 max-w-7xl">
       <div className="flex items-center justify-between mb-8 gap-4 flex-wrap">
         <div>
-          <Link href="/admin/services" className="text-sm text-ink-60 hover:text-black">← Back to services</Link>
+          <Link href="/acs-1000-admin/services" className="text-sm text-ink-60 hover:text-black">← Back to services</Link>
           <h1 className="text-3xl font-bold text-black mt-2">Edit service</h1>
         </div>
         <button onClick={save} disabled={saving} className="btn-primary text-sm">
