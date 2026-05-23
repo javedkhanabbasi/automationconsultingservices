@@ -4,7 +4,7 @@ export const siteConfig = {
   domain: 'automationconsultingservices.org',
   url: 'https://automationconsultingservices.org',
 
-  predicate: 'operations infrastructure built with engineering discipline for $1M-$10M operators',
+  predicate: 'operations infrastructure built with engineering discipline for $10M-$50M operators',
   tagline: 'Engineering discipline. Applied to your operations.',
 
   founder: {

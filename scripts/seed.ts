@@ -231,7 +231,7 @@ async function seedPages() {
       slug: 'about',
       title: 'About',
       hero_heading: 'Engineering discipline. Applied to your operations.',
-      hero_subheading: 'Ten years of software engineering, applied to the operations layer of $1M-$10M companies.',
+      hero_subheading: 'Ten years of software engineering, applied to the operations layer of $10M-$50M companies.',
       meta_title: 'About | Founded by Matthew Piwko',
       meta_description: 'Founded by Matthew Piwko in late 2024. Ten years building production software. Now applied to operations infrastructure for growth-stage operators.',
       focus_keyword: 'about automation consulting services',

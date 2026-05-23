@@ -10,7 +10,7 @@ import { services } from '@/content/services';
 export const metadata: Metadata = buildMetadata({
   title: 'Services | Sales, Operations, Admin, and Integration Automation',
   description:
-    'Four service surfaces. One engineering methodology. Sales automation, operations automation, admin workflows, and integration architecture for $1M-$10M operators.',
+    'Four service surfaces. One engineering methodology. Sales automation, operations automation, admin workflows, and integration architecture for $10M-$50M operators.',
   path: '/services',
 });
 

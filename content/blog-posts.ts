@@ -246,7 +246,7 @@ export const blogPosts: BlogPost[] = [
       {
         type: 'paragraph',
         content:
-          'Three workflow platforms cover most of the automation market for $1M-$10M operators. The choice between them depends on volume, complexity, and engineering capacity.',
+          'Three workflow platforms cover most of the automation market for $10M-$50M operators. The choice between them depends on volume, complexity, and engineering capacity.',
       },
     ],
   },
