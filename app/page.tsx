@@ -65,6 +65,72 @@ const featuredCases = [
   },
 ];
 
+const testimonials = [
+  {
+    quote: 'They were a great asset. We had multiple issues we needed resolved in a very complicated workspace. Matthew was very communicative and detail oriented. Would definitely recommend!',
+    name: 'Tony Velasquez',
+    role: 'Business Improvement Specialist',
+    company: 'Complete Fence',
+    protected: false,
+  },
+  {
+    quote: 'Matt and his team were fantastic and delivered on our desired product outcome in a timely and professional manner. They went above and beyond expectations.',
+    name: 'Kris Mathis',
+    role: 'CEO',
+    company: 'Media Street',
+    protected: false,
+  },
+  {
+    quote: 'Excellent experience working with Matt. Great communicator. I highly recommend.',
+    name: 'Identity Protected',
+    role: 'Confidential Client',
+    company: '',
+    protected: true,
+  },
+  {
+    quote: 'Matt is super knowledgeable and awesome to work with!',
+    name: 'Identity Protected',
+    role: 'Confidential Client',
+    company: '',
+    protected: true,
+  },
+  {
+    quote: 'This was a complex, multi-layered project involving a custom dashboard integrating several third-party vendor APIs, a Voice AI system, and browser automation workflows. The team handled it brilliantly.',
+    name: 'Wayne Murry',
+    role: 'CEO',
+    company: "Maddie's Mobile Makeovers",
+    protected: false,
+  },
+  {
+    quote: 'Matthew was very knowledgeable and helped with my automation needs. I highly recommend working with him.',
+    name: 'Identity Protected',
+    role: 'Confidential Client',
+    company: '',
+    protected: true,
+  },
+  {
+    quote: 'Working with Matthew was easy, efficient, and a great partnership. Matthew was patient, kind, and communicative throughout the process. He delivered the project quickly.',
+    name: 'Identity Protected',
+    role: 'Confidential Client',
+    company: '',
+    protected: true,
+  },
+  {
+    quote: 'Matt did an incredible job on my web scraping project. He was not only highly skilled and efficient but also honest and transparent throughout the process. Communication was great.',
+    name: 'Nick Anderson',
+    role: 'Owner, CEO',
+    company: "Anderson Son's Plumbing",
+    protected: false,
+  },
+  {
+    quote: 'Matt is first class in every respect.',
+    name: 'Steve Wiggins',
+    role: 'CEO',
+    company: 'Oxbridge Health',
+    protected: false,
+  },
+];
+
 const crms = [
   {
     name: 'Attio',
@@ -323,6 +389,148 @@ export default function HomePage() {
               ))}
             </div>
           </div>
+        </section>
+
+        {/* TESTIMONIALS — CSS-only infinite slider with premium cards */}
+        <section className="relative bg-gradient-to-b from-white via-[#F8FBF3] to-white section-padding border-t border-ink-10 overflow-hidden">
+          {/* Decorative background blobs */}
+          <div className="pointer-events-none absolute inset-0 overflow-hidden">
+            <div className="absolute -top-32 -left-32 w-96 h-96 rounded-full bg-[#9CCC65]/8 blur-3xl" />
+            <div className="absolute -bottom-32 -right-32 w-96 h-96 rounded-full bg-[#9CCC65]/8 blur-3xl" />
+          </div>
+
+          <div className="container-x mb-14 relative z-10">
+            <div className="text-center max-w-2xl mx-auto">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-[#9CCC65]/40 bg-[#9CCC65]/10 mb-4">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#9CCC65] animate-pulse" />
+                <span className="text-xs font-semibold text-[#3B6D11] uppercase tracking-wider">Client Testimonials</span>
+              </div>
+              <h2 className="text-3xl lg:text-5xl font-bold text-black leading-tight mb-4 tracking-tight">
+                Real feedback. <span className="text-[#7CB342]">Real projects.</span>
+              </h2>
+              <p className="text-ink-60 leading-relaxed text-base lg:text-lg">
+                Nine voices from operators we have shipped real infrastructure for.
+              </p>
+            </div>
+          </div>
+
+          {/* Slider track — full bleed beyond container */}
+          <div
+            className="relative"
+            style={{
+              maskImage: 'linear-gradient(to right, transparent, black 6%, black 94%, transparent)',
+              WebkitMaskImage: 'linear-gradient(to right, transparent, black 6%, black 94%, transparent)',
+            }}
+          >
+            <div className="testimonials-marquee flex gap-6 w-max py-6">
+              {/* Render the array twice for seamless infinite loop */}
+              {[...testimonials, ...testimonials].map((t, i) => (
+                <article
+                  key={i}
+                  className="testimonial-card group flex-shrink-0 w-[340px] sm:w-[420px] relative"
+                >
+                  {/* Gradient border wrapper */}
+                  <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-[#9CCC65]/40 via-white to-[#9CCC65]/20 opacity-60 group-hover:opacity-100 transition-opacity duration-500" />
+
+                  {/* Card content */}
+                  <div className="relative m-[1.5px] rounded-3xl bg-white p-8 h-full shadow-[0_4px_24px_rgba(43,76,19,0.06)] group-hover:shadow-[0_24px_60px_rgba(43,76,19,0.15)] group-hover:-translate-y-1.5 transition-all duration-500 ease-out overflow-hidden">
+
+                    {/* Large decorative quote mark */}
+                    <div
+                      className="absolute -top-6 -right-2 text-[160px] leading-none font-serif text-[#9CCC65]/8 select-none pointer-events-none"
+                      style={{ fontFamily: 'Georgia, serif' }}
+                    >
+                      &ldquo;
+                    </div>
+
+                    {/* Stars + verified badge row */}
+                    <div className="flex items-center justify-between mb-5 relative z-10">
+                      <div className="flex items-center gap-0.5">
+                        {[...Array(5)].map((_, idx) => (
+                          <svg
+                            key={idx}
+                            className="w-4 h-4 fill-[#9CCC65]"
+                            viewBox="0 0 20 20"
+                          >
+                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.196-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118L2.075 9.1c-.783-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+                          </svg>
+                        ))}
+                      </div>
+                      {!t.protected && (
+                        <span className="inline-flex items-center gap-1 text-[10px] font-bold uppercase tracking-wider text-[#3B6D11] bg-[#9CCC65]/15 border border-[#9CCC65]/30 px-2 py-1 rounded-full">
+                          <svg className="w-3 h-3 fill-current" viewBox="0 0 20 20">
+                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                          </svg>
+                          Verified
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Quote text */}
+                    <p className="text-ink-80 text-[15px] leading-[1.7] mb-6 min-h-[140px] relative z-10 font-medium">
+                      {t.quote}
+                    </p>
+
+                    {/* Divider */}
+                    <div className="h-px bg-gradient-to-r from-transparent via-[#9CCC65]/30 to-transparent mb-5 relative z-10" />
+
+                    {/* Attribution */}
+                    <div className="flex items-center gap-3 relative z-10">
+                      {/* Premium avatar */}
+                      <div className="relative flex-shrink-0">
+                        {!t.protected && (
+                          <div className="absolute inset-0 rounded-full bg-[#9CCC65]/30 blur-md group-hover:bg-[#9CCC65]/50 transition-all duration-500" />
+                        )}
+                        <div
+                          className={`relative w-12 h-12 rounded-full flex items-center justify-center font-bold text-sm ${
+                            t.protected
+                              ? 'bg-gradient-to-br from-ink-10 to-ink-20 text-ink-50 border border-ink-10'
+                              : 'bg-gradient-to-br from-[#9CCC65] to-[#7CB342] text-white shadow-[0_4px_12px_rgba(124,179,66,0.3)] ring-2 ring-white'
+                          }`}
+                        >
+                          {t.protected ? (
+                            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                              <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                            </svg>
+                          ) : (
+                            t.name.split(' ').map((n) => n[0]).join('').slice(0, 2)
+                          )}
+                        </div>
+                      </div>
+
+                      <div className="min-w-0 flex-1">
+                        <div className={`font-bold text-[15px] leading-tight ${t.protected ? 'text-ink-60' : 'text-black'}`}>
+                          {t.name}
+                        </div>
+                        <div className="text-xs text-ink-50 mt-1 truncate font-medium">
+                          {t.role}{t.company ? ` · ${t.company}` : ''}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+
+          {/* Inline styles for marquee animation + pause on hover */}
+          <style>{`
+            @keyframes testimonials-scroll {
+              0% { transform: translateX(0); }
+              100% { transform: translateX(-50%); }
+            }
+            .testimonials-marquee {
+              animation: testimonials-scroll 70s linear infinite;
+            }
+            .testimonials-marquee:hover {
+              animation-play-state: paused;
+            }
+            @media (prefers-reduced-motion: reduce) {
+              .testimonials-marquee {
+                animation-duration: 280s;
+              }
+            }
+          `}</style>
         </section>
 
         {/* FAQ */}
