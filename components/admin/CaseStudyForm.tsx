@@ -43,7 +43,8 @@ export interface CaseStudyFormData {
   meta_description: string;
   focus_keyword: string;
   og_image_url: string;
-  status: 'draft' | 'published' | 'archived';
+  scheduled_for: string; // local 'YYYY-MM-DDTHH:mm' for the input, ISO is stored in DB
+  status: 'draft' | 'published' | 'scheduled' | 'archived';
 }
 
 const EMPTY: CaseStudyFormData = {
@@ -58,8 +59,24 @@ const EMPTY: CaseStudyFormData = {
   testimonial_quote: '', testimonial_attribution: '', testimonial_role: '',
   related_slugs: [],
   meta_title: '', meta_description: '', focus_keyword: '', og_image_url: '',
+  scheduled_for: '',
   status: 'draft',
 };
+
+// Convert an ISO/DB timestamp to the value a <input type="datetime-local"> expects (local time).
+function toLocalInput(value?: string | null): string {
+  if (!value) return '';
+  const d = new Date(value);
+  if (isNaN(d.getTime())) return '';
+  const offset = d.getTimezoneOffset();
+  return new Date(d.getTime() - offset * 60000).toISOString().slice(0, 16);
+}
+
+// Default schedule time = 1 hour from now (in local time for the input).
+// Guarantees a valid future value so users never hit the AM/PM past-time error.
+function defaultScheduleTime(): string {
+  return toLocalInput(new Date(Date.now() + 60 * 60 * 1000).toISOString());
+}
 
 function safeArray<T>(val: any, fallback: T[]): T[] {
   if (Array.isArray(val)) return val;
@@ -77,6 +94,7 @@ export default function CaseStudyForm({ initialData, mode }: { initialData?: Cas
     tech_stack: safeArray(initialData.tech_stack, []),
     solution_steps: safeArray(initialData.solution_steps, [{ num: 1, text: '' }]),
     related_slugs: safeArray(initialData.related_slugs, []),
+    scheduled_for: toLocalInput(initialData.scheduled_for),
   } : undefined;
   const [data, setData] = useState<CaseStudyFormData>(safeInitial || EMPTY);
   const [saving, setSaving] = useState(false);
@@ -85,6 +103,18 @@ export default function CaseStudyForm({ initialData, mode }: { initialData?: Cas
 
   const update = <K extends keyof CaseStudyFormData>(key: K, value: CaseStudyFormData[K]) => {
     setData((prev) => ({ ...prev, [key]: value }));
+  };
+
+  // Changing status — when switching to "scheduled" with no time yet, pre-fill +1 hour.
+  const onStatusChange = (next: CaseStudyFormData['status']) => {
+    setData((prev) => ({
+      ...prev,
+      status: next,
+      scheduled_for:
+        next === 'scheduled' && !prev.scheduled_for
+          ? defaultScheduleTime()
+          : prev.scheduled_for,
+    }));
   };
 
   const onTitleChange = (title: string) => {
@@ -119,15 +149,30 @@ export default function CaseStudyForm({ initialData, mode }: { initialData?: Cas
     update('tech_stack', value.split(',').map((t) => t.trim()).filter(Boolean));
   };
 
-  const save = async (publishStatus?: 'draft' | 'published') => {
+  const save = async (publishStatus?: 'draft' | 'published' | 'scheduled') => {
     if (!data.short_title.trim() || !data.slug.trim()) { alert('Title and slug are required'); return; }
+
+    const action = publishStatus || data.status;
+
+    if (action === 'scheduled') {
+      if (!data.scheduled_for) { alert('Pick a date & time to schedule the case study'); return; }
+      if (new Date(data.scheduled_for).getTime() <= Date.now()) {
+        alert('Scheduled time must be in the future'); return;
+      }
+    }
 
     setSaving(true);
     const supabase = createClient();
     const payload = {
       ...data,
-      status: publishStatus || data.status,
-      published_at: (publishStatus === 'published' && !initialData?.id) ? new Date().toISOString() : undefined,
+      status: action,
+      // store ISO when scheduled, otherwise clear it
+      scheduled_for:
+        action === 'scheduled' && data.scheduled_for
+          ? new Date(data.scheduled_for).toISOString()
+          : null,
+      // only stamp published_at the first time a brand-new case study is published
+      published_at: (action === 'published' && !initialData?.id) ? new Date().toISOString() : undefined,
     };
 
     const result = mode === 'new'
@@ -145,7 +190,7 @@ export default function CaseStudyForm({ initialData, mode }: { initialData?: Cas
       router.push(`/acs-1000-admin/case-studies/${result.data.id}`);
     } else {
       router.refresh();
-      alert('Saved successfully');
+      alert(action === 'scheduled' ? 'Case study scheduled' : 'Saved successfully');
     }
   };
 
@@ -166,7 +211,15 @@ export default function CaseStudyForm({ initialData, mode }: { initialData?: Cas
         <div className="flex gap-2 flex-wrap">
           {mode === 'edit' && <button onClick={handleDelete} className="btn-ghost text-sm">Delete</button>}
           <button onClick={() => save('draft')} disabled={saving} className="btn-ghost text-sm">{saving ? 'Saving...' : 'Save draft'}</button>
-          <button onClick={() => save('published')} disabled={saving} className="btn-primary text-sm">{saving ? 'Saving...' : 'Publish'}</button>
+          {data.status === 'scheduled' ? (
+            <button onClick={() => save('scheduled')} disabled={saving} className="btn-primary text-sm">
+              {saving ? 'Saving...' : 'Schedule'}
+            </button>
+          ) : (
+            <button onClick={() => save('published')} disabled={saving} className="btn-primary text-sm">
+              {saving ? 'Saving...' : data.status === 'published' ? 'Update published' : 'Publish'}
+            </button>
+          )}
         </div>
       </div>
 
@@ -311,11 +364,31 @@ export default function CaseStudyForm({ initialData, mode }: { initialData?: Cas
         <div className="space-y-6">
           <div className="card p-6">
             <h3 className="text-lg font-bold text-black mb-5">Publish</h3>
-            <select value={data.status} onChange={(e) => update('status', e.target.value as 'draft' | 'published' | 'archived')} className="w-full px-4 py-2.5 border border-ink-20 rounded-md text-black focus:border-black focus:outline-none text-sm bg-white">
-              <option value="draft">Draft</option>
-              <option value="published">Published</option>
-              <option value="archived">Archived</option>
-            </select>
+            <div className="space-y-4">
+              <div>
+                <label className="block text-xs font-bold text-black uppercase tracking-wider mb-2">Status</label>
+                <select value={data.status} onChange={(e) => onStatusChange(e.target.value as CaseStudyFormData['status'])} className="w-full px-4 py-2.5 border border-ink-20 rounded-md text-black focus:border-black focus:outline-none text-sm bg-white">
+                  <option value="draft">Draft</option>
+                  <option value="scheduled">Scheduled</option>
+                  <option value="published">Published</option>
+                  <option value="archived">Archived</option>
+                </select>
+              </div>
+
+              {data.status === 'scheduled' && (
+                <div>
+                  <label className="block text-xs font-bold text-black uppercase tracking-wider mb-2">Publish date &amp; time</label>
+                  <input
+                    type="datetime-local"
+                    value={data.scheduled_for}
+                    min={toLocalInput(new Date().toISOString())}
+                    onChange={(e) => update('scheduled_for', e.target.value)}
+                    className="w-full px-4 py-2.5 border border-ink-20 rounded-md text-black focus:border-black focus:outline-none text-sm bg-white"
+                  />
+                  <p className="text-xs text-ink-50 mt-1">Case study will go live automatically at this time.</p>
+                </div>
+              )}
+            </div>
           </div>
 
         

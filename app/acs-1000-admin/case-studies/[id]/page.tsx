@@ -43,6 +43,7 @@ export default async function EditCaseStudyPage({ params }: { params: { id: stri
     meta_description: cs.meta_description || '',
     focus_keyword: cs.focus_keyword || '',
     og_image_url: cs.og_image_url || '',
+    scheduled_for: cs.scheduled_for ?? '',
     status: cs.status || 'draft',
   };
 
