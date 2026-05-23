@@ -62,7 +62,7 @@ const categories = [
     name: 'Fit & boundaries',
     qs: [
       { question: 'Who is the right fit for ACS?', answer: 'Operators in the $10K-$50M revenue band running on a mix of CRMs, spreadsheets, and shared inboxes. Teams that need real infrastructure before the next growth stage compounds the chaos.' },
-      { question: 'Who is not a fit?', answer: 'Operators under $10K revenue (the engagement math does not work yet), operators looking for one-off Zaps (we engineer systems), teams that cannot commit anyone to a discovery call, and engagements that require 12-month contract lock-ins on our side.' },
+      { question: 'Who is not a fit?', answer: 'Operators under $10K revenue (the engagement math does not work yet), operators looking for one-off Zaps (we engineer systems), and teams that cannot commit anyone to a discovery call.' },
       { question: 'Do you offer equity or revenue-share deals?', answer: 'No. We bill what the work costs to deliver plus margin. Revenue-share entangles consulting incentives with operator outcomes in ways that compromise the diagnostic.' },
       { question: 'Can I see references before engaging?', answer: 'Yes. Five of our seven published case studies feature named operators with real titles you can verify on LinkedIn. Two more are protected by NDA but we can share contact details with permission.' },
     ],

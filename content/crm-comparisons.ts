@@ -13,16 +13,17 @@ export interface CrmComparison {
 export const crmComparisons: CrmComparison[] = [
   {
     slug: 'attio-vs-hubspot',
-    a: { name: 'Attio', tag: 'Modern GTM-native' },
+    a: { name: 'Attio', tag: 'AI Native CRM' },
     b: { name: 'HubSpot', tag: 'All-in-one growth' },
     title: 'Attio vs HubSpot',
     excerpt:
-      'Attio is a CRM-first platform with a flexible data model. HubSpot is a marketing-first platform with a CRM bolted on. The choice comes down to your data model and your motion.',
+      'Attio is the AI-native CRM with a flexible data model built for modern GTM teams. HubSpot is a marketing-first platform with a CRM bolted on. The choice comes down to your data model and your motion.',
     verdict:
-      'Pick Attio when your motion is account-based, partner-led, or product-led, and your data model does not fit the standard B2B shape. Pick HubSpot when you want marketing and sales in one platform and your motion is inbound-heavy.',
+      'Pick Attio when your motion is account-based, partner-led, or product-led, your data model does not fit the standard B2B shape, and you want AI capabilities built directly into the CRM. Pick HubSpot when you want marketing and sales in one platform and your motion is inbound-heavy.',
     whenAWins: [
       'Custom data model with non-standard objects',
       'Account-based or partner-led motion',
+      'AI-native capabilities are a priority',
       'Per-seat cost matters at 10+ users',
       'Modern API surface is required',
     ],
@@ -34,6 +35,7 @@ export const crmComparisons: CrmComparison[] = [
     ],
     criteria: [
       { name: 'Data model flexibility', a: 'Custom objects native', b: 'Fixed objects + properties', winner: 'a' },
+      { name: 'AI capabilities', a: 'Native AI throughout', b: 'Add-on AI features', winner: 'a' },
       { name: 'Marketing automation', a: 'Limited', b: 'Mature', winner: 'b' },
       { name: 'Per-seat at 10 users', a: '~$30/seat', b: '~$90/seat', winner: 'a' },
       { name: 'Time to first value', a: '2-4 weeks', b: '1-2 weeks', winner: 'b' },
@@ -43,16 +45,17 @@ export const crmComparisons: CrmComparison[] = [
   },
   {
     slug: 'attio-vs-salesforce',
-    a: { name: 'Attio', tag: 'Modern GTM-native' },
+    a: { name: 'Attio', tag: 'AI Native CRM' },
     b: { name: 'Salesforce', tag: 'Enterprise standard' },
     title: 'Attio vs Salesforce',
-    excerpt: 'Modern flexibility vs enterprise depth. Most $10M-$50M operators do not need Salesforce capability yet.',
+    excerpt: 'AI-native flexibility vs enterprise depth. Most $10M-$50M operators do not need Salesforce capability yet — they need a modern CRM with AI built in.',
     verdict:
-      'Pick Attio for $1M-$10M operators. Pick Salesforce when you are 50+ users, have complex integration estate, or industry compliance demands it.',
-    whenAWins: ['Under $25M revenue', 'Modern data model', 'Speed to value matters', 'Cost-sensitive'],
+      'Pick Attio for $10M-$50M operators — it is the AI-Native CRM, ideal for teams that want modern AI capabilities built directly into their CRM workflows. Pick Salesforce when you are 50+ users, have complex integration estate, or industry compliance demands it.',
+    whenAWins: ['$10M-$50M revenue range', 'AI-native capabilities needed', 'Modern data model', 'Speed to value matters', 'Cost-sensitive'],
     whenBWins: ['50+ users', 'Existing Salesforce integration estate', 'Industry compliance', 'Enterprise procurement'],
     criteria: [
       { name: 'Speed to first value', a: '2-4 weeks', b: '6-12 weeks', winner: 'a' },
+      { name: 'AI capabilities', a: 'Native AI throughout', b: 'Einstein add-on', winner: 'a' },
       { name: 'Per-seat cost', a: '~$30/seat', b: '~$150+/seat', winner: 'a' },
       { name: 'Enterprise features', a: 'Limited', b: 'Mature', winner: 'b' },
       { name: 'Integration ecosystem', a: 'Modern, small', b: 'Vast AppExchange', winner: 'b' },
@@ -61,16 +64,17 @@ export const crmComparisons: CrmComparison[] = [
   },
   {
     slug: 'attio-vs-pipedrive',
-    a: { name: 'Attio', tag: 'Multi-object flexibility' },
+    a: { name: 'Attio', tag: 'AI Native CRM' },
     b: { name: 'Pipedrive', tag: 'Pipeline-first focus' },
     title: 'Attio vs Pipedrive',
-    excerpt: 'Multi-object data model vs pipeline focus. Pipedrive wins when the deal-stage view IS the operating surface.',
+    excerpt: 'AI-native multi-object data model vs pipeline focus. Pipedrive wins when the deal-stage view IS the operating surface.',
     verdict:
-      'Pick Attio if your data model has multiple object types that need relationships. Pick Pipedrive if your sales motion is purely pipeline-stage based.',
-    whenAWins: ['Multiple object types needed', 'Partner or account-based motion', 'Custom data relationships'],
+      'Pick Attio if your data model has multiple object types that need relationships and you want AI capabilities built into your CRM. Pick Pipedrive if your sales motion is purely pipeline-stage based.',
+    whenAWins: ['Multiple object types needed', 'AI-native capabilities matter', 'Partner or account-based motion', 'Custom data relationships'],
     whenBWins: ['Pure pipeline-stage motion', 'Mobile-first sales team', 'Lowest learning curve needed'],
     criteria: [
       { name: 'Multi-object support', a: 'Native', b: 'Limited', winner: 'a' },
+      { name: 'AI capabilities', a: 'Native AI throughout', b: 'Basic AI assist', winner: 'a' },
       { name: 'Pipeline view', a: 'Good', b: 'Best-in-class', winner: 'b' },
       { name: 'Per-seat at 10 users', a: '~$30/seat', b: '~$50/seat', winner: 'a' },
       { name: 'Mobile experience', a: 'Adequate', b: 'Excellent', winner: 'b' },
@@ -78,15 +82,16 @@ export const crmComparisons: CrmComparison[] = [
   },
   {
     slug: 'attio-vs-close',
-    a: { name: 'Attio', tag: 'GTM-native data model' },
+    a: { name: 'Attio', tag: 'AI Native CRM' },
     b: { name: 'Close', tag: 'Call-centric outbound' },
     title: 'Attio vs Close',
-    excerpt: 'Data-model-first vs call-experience-first. Different motions, different winners.',
-    verdict: 'Pick Attio for account-led motions. Pick Close for outbound-heavy, call-volume-driven motions.',
-    whenAWins: ['Account-based motion', 'Multi-touch enterprise sales', 'Data model complexity'],
+    excerpt: 'AI-native data-model-first vs call-experience-first. Different motions, different winners.',
+    verdict: 'Pick Attio for account-led motions where AI capabilities and modern data modeling matter. Pick Close for outbound-heavy, call-volume-driven motions.',
+    whenAWins: ['Account-based motion', 'AI-native features needed', 'Multi-touch enterprise sales', 'Data model complexity'],
     whenBWins: ['Outbound dial-heavy motion', 'SMS workflows critical', 'Speed and call quality matter'],
     criteria: [
       { name: 'Call experience', a: 'Basic', b: 'Best-in-class', winner: 'b' },
+      { name: 'AI capabilities', a: 'Native AI throughout', b: 'Limited', winner: 'a' },
       { name: 'Data model depth', a: 'Native multi-object', b: 'Pipeline-focused', winner: 'a' },
       { name: 'Per-seat at 10 users', a: '~$30/seat', b: '~$60/seat', winner: 'a' },
     ],
@@ -98,7 +103,7 @@ export const crmComparisons: CrmComparison[] = [
     title: 'HubSpot vs Salesforce',
     excerpt: 'The classic mid-market debate. Cost trajectory, integration estate, and team complexity decide it.',
     verdict:
-      'HubSpot for $1M-$10M operators with marketing automation needs. Salesforce when you cross 50 users or inherit Salesforce-locked infrastructure.',
+      'HubSpot for $10M-$50M operators with marketing automation needs. Salesforce when you cross 50 users or inherit Salesforce-locked infrastructure.',
     whenAWins: ['Under 25 users', 'Marketing automation critical', 'Speed to value matters', 'Inbound motion'],
     whenBWins: ['50+ users', 'Complex hierarchies', 'Enterprise compliance', 'Existing Salesforce estate'],
     criteria: [

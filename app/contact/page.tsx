@@ -31,7 +31,6 @@ const wontFit = [
   'Operators under $1M revenue (the engagement math does not work yet)',
   'Operators looking for one-off Zaps (we engineer systems, not point fixes)',
   'Teams that cannot commit anyone to a 90-minute discovery call',
-  'Engagements that require 12-month contract lock-ins on our side',
 ];
 
 export default function ContactPage() {
@@ -138,7 +137,7 @@ export default function ContactPage() {
             <div className="max-w-3xl">
               <div className="eyebrow mb-3">Who we are not a fit for</div>
               <h2 className="text-3xl lg:text-4xl font-bold text-black leading-tight mb-5">
-                Four cases where we will say no on the first call.
+                Three cases where we will say no on the first call.
               </h2>
               <p className="text-ink-70 leading-relaxed mb-8">
                 We would rather save both sides time than try to make a bad fit work. If you see your situation in the list below, that is not a problem — it is just a sign we are not the right firm right now.

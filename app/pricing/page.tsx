@@ -53,7 +53,6 @@ const wontDo = [
   { title: 'Value-based pricing capturing upside', body: 'We charge what the work costs to deliver plus margin. Upside belongs to the operator.' },
   { title: 'Surprise change orders', body: 'Every change order is explicit, written, and priced separately.' },
   { title: 'Token or subscription billing for builds', body: 'Projects are projects. Subscription billing for fixed scope obscures usage.' },
-  { title: 'Long-term contract lock-ins', body: 'Retainers are month-to-month. No 12-month commitments to keep your business.' },
 ];
 
 const faqs = [
@@ -294,7 +293,7 @@ export default function PricingPage() {
             <div className="max-w-3xl mb-12">
               <div className="eyebrow mb-3">Pricing structures we refuse</div>
               <h2 className="text-3xl lg:text-4xl font-bold text-black leading-tight">
-                Five pricing models we will not use.
+                Four pricing models we will not use.
               </h2>
             </div>
             <div className="space-y-3">
