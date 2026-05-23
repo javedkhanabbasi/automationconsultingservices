@@ -12,9 +12,10 @@ function statusBadge(status: string) {
   }
 }
 
-// Short, readable date+time for scheduled posts
+// Short, readable date+time for scheduled posts — Pakistan timezone (Asia/Karachi)
 function formatScheduled(value: string) {
   return new Date(value).toLocaleString('en-US', {
+    timeZone: 'Asia/Karachi',
     month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit',
   });
 }
@@ -23,7 +24,7 @@ export default async function CaseStudiesListPage() {
   const supabase = createClient();
   const { data: items } = await supabase
     .from('case_studies')
-    .select('id, short_title, slug, status, industry_tag, revenue, region, timeline, headline_metric, updated_at, scheduled_for')
+    .select('id, short_title, slug, status, industry_tag, revenue, region, timeline, headline_metric, updated_at, scheduled_for, category_name')
     .order('updated_at', { ascending: false });
 
   return (
@@ -45,6 +46,7 @@ export default async function CaseStudiesListPage() {
                 <thead className="bg-ink-5 border-b border-ink-10">
                   <tr>
                     <th className="text-left px-6 py-3 text-xs font-bold uppercase tracking-wider text-black">Title</th>
+                    <th className="text-left px-6 py-3 text-xs font-bold uppercase tracking-wider text-black">Category</th>
                     <th className="text-left px-6 py-3 text-xs font-bold uppercase tracking-wider text-black">Industry</th>
                     <th className="text-left px-6 py-3 text-xs font-bold uppercase tracking-wider text-black">Revenue</th>
                     <th className="text-left px-6 py-3 text-xs font-bold uppercase tracking-wider text-black">Status</th>
@@ -60,6 +62,7 @@ export default async function CaseStudiesListPage() {
                         </Link>
                         <div className="text-xs text-ink-50 mt-0.5">/{c.slug}</div>
                       </td>
+                      <td className="px-6 py-4 text-sm text-ink-70">{c.category_name || '—'}</td>
                       <td className="px-6 py-4 text-sm text-ink-70">{c.industry_tag || '—'}</td>
                       <td className="px-6 py-4 text-sm text-ink-70">{c.revenue || '—'}</td>
                       <td className="px-6 py-4">
@@ -87,7 +90,9 @@ export default async function CaseStudiesListPage() {
                     <div className="flex-1 min-w-0">
                       <div className="font-semibold text-black text-sm truncate">{c.short_title}</div>
                       <div className="text-xs text-ink-50 mt-0.5 truncate">/{c.slug}</div>
-                      <div className="text-xs text-ink-50 mt-1">{c.industry_tag || '—'} · {c.revenue || '—'}</div>
+                      <div className="text-xs text-ink-50 mt-1">
+                        {c.category_name ? c.category_name + ' · ' : ''}{c.industry_tag || '—'} · {c.revenue || '—'}
+                      </div>
                     </div>
                     <div className="flex flex-col items-end gap-2 shrink-0">
                       <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-1 rounded ${statusBadge(c.status)}`}>

@@ -12,9 +12,10 @@ function statusBadge(status: string) {
   }
 }
 
-// Short, readable date+time for scheduled posts
+// Short, readable date+time for scheduled posts — Pakistan timezone (Asia/Karachi)
 function formatScheduled(value: string) {
   return new Date(value).toLocaleString('en-US', {
+    timeZone: 'Asia/Karachi',
     month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit',
   });
 }

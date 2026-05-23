@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { createClient } from '@/lib/supabase/client';
@@ -8,6 +8,12 @@ import { slugify } from '@/lib/slug';
 import RichTextEditor from './RichTextEditor';
 import SeoPanel from './SeoPanel';
 import FeaturedImagePicker from './FeaturedImagePicker';
+
+interface Category {
+  id: string;
+  name: string;
+  slug: string;
+}
 
 export interface CaseStudyFormData {
   id?: string;
@@ -39,10 +45,15 @@ export interface CaseStudyFormData {
   testimonial_attribution: string;
   testimonial_role: string;
   related_slugs: string[];
+  category_id: string | null;
+  category_name: string;
   meta_title: string;
   meta_description: string;
   focus_keyword: string;
   og_image_url: string;
+  canonical_url: string;
+  no_index: boolean;
+  no_follow: boolean;
   scheduled_for: string; // local 'YYYY-MM-DDTHH:mm' for the input, ISO is stored in DB
   status: 'draft' | 'published' | 'scheduled' | 'archived';
 }
@@ -58,7 +69,9 @@ const EMPTY: CaseStudyFormData = {
   outcome_heading: 'The outcome', outcome_content: '', outcome_content_json: null,
   testimonial_quote: '', testimonial_attribution: '', testimonial_role: '',
   related_slugs: [],
-  meta_title: '', meta_description: '', focus_keyword: '', og_image_url: '',
+  category_id: null, category_name: '',
+  meta_title: '', meta_description: '', focus_keyword: '', og_image_url: '', canonical_url: '',
+  no_index: false, no_follow: false,
   scheduled_for: '',
   status: 'draft',
 };
@@ -100,9 +113,22 @@ export default function CaseStudyForm({ initialData, mode }: { initialData?: Cas
   const [saving, setSaving] = useState(false);
   const [autoSlug, setAutoSlug] = useState(mode === 'new');
   const [stackInput, setStackInput] = useState(safeArray(initialData?.tech_stack, []).join(', '));
+  const [categories, setCategories] = useState<Category[]>([]);
+
+  useEffect(() => {
+    const supabase = createClient();
+    supabase.from('categories').select('id, name, slug').order('name').then(({ data }) => {
+      if (data) setCategories(data);
+    });
+  }, []);
 
   const update = <K extends keyof CaseStudyFormData>(key: K, value: CaseStudyFormData[K]) => {
     setData((prev) => ({ ...prev, [key]: value }));
+  };
+
+  const onCategoryChange = (id: string) => {
+    const cat = categories.find((c) => c.id === id);
+    setData((prev) => ({ ...prev, category_id: id || null, category_name: cat?.name || '' }));
   };
 
   // Changing status — when switching to "scheduled" with no time yet, pre-fill +1 hour.
@@ -356,8 +382,17 @@ export default function CaseStudyForm({ initialData, mode }: { initialData?: Cas
           </div>
 
           <SeoPanel
-            values={{ meta_title: data.meta_title, meta_description: data.meta_description, focus_keyword: data.focus_keyword, og_image_url: data.og_image_url }}
+            values={{
+              meta_title: data.meta_title,
+              meta_description: data.meta_description,
+              focus_keyword: data.focus_keyword,
+              og_image_url: data.og_image_url,
+              canonical_url: data.canonical_url,
+              no_index: data.no_index,
+              no_follow: data.no_follow,
+            }}
             onChange={(field, value) => update(field as keyof CaseStudyFormData, value as CaseStudyFormData[keyof CaseStudyFormData])}
+            showCanonical
           />
         </div>
 
@@ -388,6 +423,25 @@ export default function CaseStudyForm({ initialData, mode }: { initialData?: Cas
                   <p className="text-xs text-ink-50 mt-1">Case study will go live automatically at this time.</p>
                 </div>
               )}
+            </div>
+          </div>
+
+          {/* Category */}
+          <div className="card p-6">
+            <h3 className="text-lg font-bold text-black mb-5">Organization</h3>
+            <div>
+              <label className="block text-xs font-bold text-black uppercase tracking-wider mb-2">Category</label>
+              <select
+                value={data.category_id || ''}
+                onChange={(e) => onCategoryChange(e.target.value)}
+                className="w-full px-4 py-2.5 border border-ink-20 rounded-md text-black focus:border-black focus:outline-none text-sm bg-white"
+              >
+                <option value="">— None —</option>
+                {categories.map((c) => (
+                  <option key={c.id} value={c.id}>{c.name}</option>
+                ))}
+              </select>
+              <Link href="/acs-1000-admin/categories" className="text-xs text-ink-60 hover:text-black mt-1 inline-block">Manage categories →</Link>
             </div>
           </div>
 
