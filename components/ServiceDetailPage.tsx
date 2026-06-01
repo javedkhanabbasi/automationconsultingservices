@@ -12,9 +12,9 @@ export default function ServiceDetailPage({ service }: { service: Service }) {
       <JsonLd
         data={[
           breadcrumbSchema([
-            { name: 'Home', url: 'https://automationconsultingservices.org/' },
-            { name: 'Services', url: 'https://automationconsultingservices.org/services' },
-            { name: service.name, url: `https://automationconsultingservices.org/services/${service.slug}` },
+            { name: 'Home', url: 'https://www.automationconsultingservices.org/' },
+{ name: 'Services', url: 'https://www.automationconsultingservices.org/services' },
+{ name: service.name, url: `https://www.automationconsultingservices.org/services/${service.slug}` },
           ]),
           faqSchema(service.faqs),
           serviceSchema({ name: service.name, description: service.shortDesc, slug: `services/${service.slug}` }),

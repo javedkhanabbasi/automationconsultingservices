@@ -23,8 +23,8 @@ const principles = [
 const projectTiers = [
   { name: 'Discovery audit', range: 'From $500', duration: '1-2 weeks', tagline: 'Map the operational pain before spending on the fix.', deliverables: ['Workflow map of current state', 'Prioritized bottleneck list', 'Recommended architecture', 'Written scope for build phase', '60-minute walkthrough with founder'], payment: 'Paid in full at kickoff. Refundable if the real bottleneck is not automation.', featured: false },
   { name: 'Simple workflow', range: '$5K – $15K', duration: '1-3 months', tagline: 'One well-defined workflow built right the first time.', deliverables: ['Workflow architecture document', 'Production build in Zapier, Make, or n8n', 'Native integrations with CRM and tools', 'Error monitoring and retry logic', 'Operator training and runbook', '30 days of post-launch tuning'], payment: '50% at kickoff, 50% at production launch.', featured: false },
-  { name: 'Mid-complexity build', range: '$10M – $50M', duration: '3-6 months', tagline: 'Multi-workflow systems with real engineering rigor.', deliverables: ['Full operational map and architecture', '3-8 connected workflows', 'CRM data model design and migration', 'Custom API integrations', 'Idempotent design with observability', 'Phased rollout with change management', '60 days of post-launch tuning'], payment: '40% kickoff, 30% milestone, 30% production.', featured: true },
-  { name: 'CRM + operations overhaul', range: '$50M+', duration: '6-18 months', tagline: 'Full operations infrastructure rebuild.', deliverables: ['CRM platform selection or migration', 'Complete data model architecture', 'Historical data migration with deduplication', '10+ connected workflows', 'Custom integration layer', 'Engineering-grade observability', 'Phased rollout with weekly reviews', '90 days of optimization'], payment: '4 milestone payments tied to discovery, kickoff, midpoint, production.', featured: false },
+  { name: 'Mid-complexity build', range: '$15K – $75K', duration: '3-6 months', tagline: 'Multi-workflow systems with real engineering rigor.', deliverables: ['Full operational map and architecture', '3-8 connected workflows', 'CRM data model design and migration', 'Custom API integrations', 'Idempotent design with observability', 'Phased rollout with change management', '60 days of post-launch tuning'], payment: '40% kickoff, 30% milestone, 30% production.', featured: true },
+  { name: 'CRM + operations overhaul', range: '$75K+', duration: '6-18 months', tagline: 'Full operations infrastructure rebuild.', deliverables: ['CRM platform selection or migration', 'Complete data model architecture', 'Historical data migration with deduplication', '10+ connected workflows', 'Custom integration layer', 'Engineering-grade observability', 'Phased rollout with weekly reviews', '90 days of optimization'], payment: '4 milestone payments tied to discovery, kickoff, midpoint, production.', featured: false },
 ];
 
 const retainers = [
@@ -70,8 +70,8 @@ export default function PricingPage() {
       <JsonLd
         data={[
           breadcrumbSchema([
-            { name: 'Home', url: 'https://automationconsultingservices.org/' },
-            { name: 'Pricing', url: 'https://automationconsultingservices.org/pricing' },
+            { name: 'Home', url: 'https://www.automationconsultingservices.org/' },
+            { name: 'Pricing', url: 'https://www.automationconsultingservices.org/pricing' },
           ]),
           faqSchema(faqs),
         ]}

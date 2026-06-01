@@ -124,7 +124,7 @@ export default function SeoPanel({ values, onChange, showCanonical = false }: Se
         <div className="bg-ink-5 rounded-md p-4 border border-ink-10">
           <div className="text-xs font-bold text-ink-60 uppercase tracking-wider mb-3">Google preview</div>
           <div className="space-y-1">
-            <div className="text-xs text-ink-60">automationconsultingservices.org</div>
+            <div className="text-xs text-ink-60">www.automationconsultingservices.org</div>
             <div className="text-lg font-medium text-[#1a0dab] leading-tight">{values.meta_title || 'Page title appears here'}</div>
             <div className="text-sm text-ink-70 leading-snug">{values.meta_description || 'Meta description appears here.'}</div>
           </div>

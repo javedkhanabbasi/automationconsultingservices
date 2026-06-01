@@ -32,9 +32,9 @@ export default function CaseStudyDetail({ params }: { params: { slug: string } }
     <>
       <JsonLd
         data={breadcrumbSchema([
-          { name: 'Home', url: 'https://automationconsultingservices.org/' },
-          { name: 'Case Studies', url: 'https://automationconsultingservices.org/case-studies' },
-          { name: cs.shortTitle, url: `https://automationconsultingservices.org/case-studies/${cs.slug}` },
+        { name: 'Home', url: 'https://www.automationconsultingservices.org/' },
+          { name: 'Case Studies', url: 'https://www.automationconsultingservices.org/case-studies' },
+          { name: cs.shortTitle, url: `https://www.automationconsultingservices.org/case-studies/${cs.slug}` },
         ])}
       />
       <Header />

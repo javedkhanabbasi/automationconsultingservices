@@ -69,9 +69,9 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
       <JsonLd
         data={[
           breadcrumbSchema([
-            { name: 'Home', url: 'https://automationconsultingservices.org/' },
-            { name: 'Resources', url: 'https://automationconsultingservices.org/blog' },
-            { name: post.title, url: `https://automationconsultingservices.org/blog/${post.slug}` },
+           { name: 'Home', url: 'https://www.automationconsultingservices.org/' },
+            { name: 'Resources', url: 'https://www.automationconsultingservices.org/blog' },
+            { name: post.title, url: `https://www.automationconsultingservices.org/blog/${post.slug}` },
           ]),
           articleSchema({
             title: post.title,

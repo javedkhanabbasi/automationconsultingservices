@@ -52,7 +52,7 @@ export default async function SettingsPage() {
           <div className="space-y-3">
             <div className="flex justify-between text-sm gap-4">
               <span className="text-ink-60 shrink-0">Domain</span>
-              <span className="text-black font-semibold text-right">automationconsultingservices.org</span>
+             <span className="text-black font-semibold text-right">www.automationconsultingservices.org</span>
             </div>
             <div className="flex justify-between text-sm gap-4">
               <span className="text-ink-60 shrink-0">Framework</span>

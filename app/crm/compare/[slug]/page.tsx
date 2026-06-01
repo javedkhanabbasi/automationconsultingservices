@@ -30,10 +30,10 @@ export default function ComparisonPage({ params }: { params: { slug: string } })
     <>
       <JsonLd
         data={breadcrumbSchema([
-          { name: 'Home', url: 'https://automationconsultingservices.org/' },
-          { name: 'CRM', url: 'https://automationconsultingservices.org/crm' },
-          { name: 'Compare', url: 'https://automationconsultingservices.org/crm/compare' },
-          { name: c.title, url: `https://automationconsultingservices.org/crm/compare/${c.slug}` },
+         { name: 'Home', url: 'https://www.automationconsultingservices.org/' },
+          { name: 'CRM', url: 'https://www.automationconsultingservices.org/crm' },
+          { name: 'Compare', url: 'https://www.automationconsultingservices.org/crm/compare' },
+          { name: c.title, url: `https://www.automationconsultingservices.org/crm/compare/${c.slug}` },
         ])}
       />
       <Header />

@@ -17,9 +17,9 @@ export default function CrmPlatformPage({ platform }: { platform: CrmPlatform })
       <JsonLd
         data={[
           breadcrumbSchema([
-            { name: 'Home', url: 'https://automationconsultingservices.org/' },
-            { name: 'CRM', url: 'https://automationconsultingservices.org/crm' },
-            { name: platform.name, url: `https://automationconsultingservices.org/crm/${platform.slug}` },
+            { name: 'Home', url: 'https://www.automationconsultingservices.org/' },
+{ name: 'CRM', url: 'https://www.automationconsultingservices.org/crm' },
+{ name: platform.name, url: `https://www.automationconsultingservices.org/crm/${platform.slug}` },
           ]),
           faqSchema(platform.faqs),
         ]}

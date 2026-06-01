@@ -18,9 +18,9 @@ export default function ToolFinderPage() {
     <>
       <JsonLd
         data={breadcrumbSchema([
-          { name: 'Home', url: 'https://automationconsultingservices.org/' },
-          { name: 'Tools', url: 'https://automationconsultingservices.org/tools' },
-          { name: 'Automation Platform Finder', url: 'https://automationconsultingservices.org/tools/automation-tool-finder' },
+         { name: 'Home', url: 'https://www.automationconsultingservices.org/' },
+          { name: 'Tools', url: 'https://www.automationconsultingservices.org/tools' },
+          { name: 'Automation Platform Finder', url: 'https://www.automationconsultingservices.org/tools/automation-tool-finder' },
         ])}
       />
       <Header />

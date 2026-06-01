@@ -49,8 +49,8 @@ export default function PartnersPage() {
     <>
       <JsonLd
         data={breadcrumbSchema([
-          { name: 'Home', url: 'https://automationconsultingservices.org/' },
-          { name: 'Partners', url: 'https://automationconsultingservices.org/partners' },
+         { name: 'Home', url: 'https://www.automationconsultingservices.org/' },
+          { name: 'Partners', url: 'https://www.automationconsultingservices.org/partners' },
         ])}
       />
       <Header />

@@ -25,9 +25,9 @@ export default function StripeCalculatorPage() {
     <>
       <JsonLd
         data={breadcrumbSchema([
-          { name: 'Home', url: 'https://automationconsultingservices.org/' },
-          { name: 'Tools', url: 'https://automationconsultingservices.org/tools' },
-          { name: 'Stripe Calculator', url: 'https://automationconsultingservices.org/tools/stripe-calculator' },
+          { name: 'Home', url: 'https://www.automationconsultingservices.org/' },
+          { name: 'Tools', url: 'https://www.automationconsultingservices.org/tools' },
+          { name: 'Stripe Calculator', url: 'https://www.automationconsultingservices.org/tools/stripe-calculator' },
         ])}
       />
       <Header />

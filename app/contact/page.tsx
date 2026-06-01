@@ -38,8 +38,8 @@ export default function ContactPage() {
     <>
       <JsonLd
         data={breadcrumbSchema([
-          { name: 'Home', url: 'https://automationconsultingservices.org/' },
-          { name: 'Contact', url: 'https://automationconsultingservices.org/contact' },
+         { name: 'Home', url: 'https://www.automationconsultingservices.org/' },
+          { name: 'Contact', url: 'https://www.automationconsultingservices.org/contact' },
         ])}
       />
       <Header />

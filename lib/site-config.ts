@@ -1,8 +1,8 @@
 export const siteConfig = {
   name: 'Automation Consulting Services',
   shortName: 'ACS',
-  domain: 'automationconsultingservices.org',
-  url: 'https://automationconsultingservices.org',
+  domain: 'www.automationconsultingservices.org',
+  url: 'https://www.automationconsultingservices.org',
 
   predicate: 'operations infrastructure built with engineering discipline for $10M-$50M operators',
   tagline: 'Engineering discipline. Applied to your operations.',

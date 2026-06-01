@@ -33,8 +33,8 @@ export default async function BlogIndex() {
     <>
       <JsonLd
         data={breadcrumbSchema([
-          { name: 'Home', url: 'https://automationconsultingservices.org/' },
-          { name: 'Resources', url: 'https://automationconsultingservices.org/blog' },
+          { name: 'Home', url: 'https://www.automationconsultingservices.org/' },
+          { name: 'Resources', url: 'https://www.automationconsultingservices.org/blog' },
         ])}
       />
       <Header />

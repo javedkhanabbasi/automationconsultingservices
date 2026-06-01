@@ -32,8 +32,8 @@ export default function ToolsIndex() {
     <>
       <JsonLd
         data={breadcrumbSchema([
-          { name: 'Home', url: 'https://automationconsultingservices.org/' },
-          { name: 'Tools', url: 'https://automationconsultingservices.org/tools' },
+         { name: 'Home', url: 'https://www.automationconsultingservices.org/' },
+          { name: 'Tools', url: 'https://www.automationconsultingservices.org/tools' },
         ])}
       />
       <Header />

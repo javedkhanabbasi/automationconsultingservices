@@ -16,6 +16,9 @@ export const metadata: Metadata = {
   creator: siteConfig.founder.name,
   publisher: siteConfig.name,
   robots: { index: true, follow: true },
+  alternates: {
+    canonical: '/',
+  },
 
 
     icons: {

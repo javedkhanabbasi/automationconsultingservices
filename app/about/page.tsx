@@ -34,8 +34,8 @@ export default function AboutPage() {
       <JsonLd
         data={[
           breadcrumbSchema([
-            { name: 'Home', url: 'https://automationconsultingservices.org/' },
-            { name: 'About', url: 'https://automationconsultingservices.org/about' },
+            { name: 'Home', url: 'https://www.automationconsultingservices.org/' },
+            { name: 'About', url: 'https://www.automationconsultingservices.org/about' },
           ]),
           personSchema(),
         ]}
@@ -84,7 +84,7 @@ export default function AboutPage() {
                       <div className="text-sm text-ink-60 mt-1">Founder & Lead Architect</div>
                     </div>
                     <ul className="space-y-3 text-sm">
-                      <li className="flex items-start gap-2"><span className="text-lime-dark">✓</span><span>10+ years software development</span></li>
+                      <li className="flex items-start gap-2"><span className="text-lime-dark">✓</span><span>Developing software since 2018</span></li>
                       <li className="flex items-start gap-2"><span className="text-lime-dark">✓</span><span>Zapier Certified Solutions Partner</span></li>
                       <li className="flex items-start gap-2"><span className="text-lime-dark">✓</span><span>Attio Expert Partner (verified)</span></li>
                       <li className="flex items-start gap-2"><span className="text-lime-dark">✓</span><span>United States based</span></li>

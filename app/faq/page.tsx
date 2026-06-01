@@ -76,8 +76,8 @@ export default function FaqPage() {
       <JsonLd
         data={[
           breadcrumbSchema([
-            { name: 'Home', url: 'https://automationconsultingservices.org/' },
-            { name: 'FAQ', url: 'https://automationconsultingservices.org/faq' },
+            { name: 'Home', url: 'https://www.automationconsultingservices.org/' },
+            { name: 'FAQ', url: 'https://www.automationconsultingservices.org/faq' },
           ]),
           faqSchema(allFaqs),
         ]}

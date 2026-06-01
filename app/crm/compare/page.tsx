@@ -18,9 +18,9 @@ export default function CompareHub() {
     <>
       <JsonLd
         data={breadcrumbSchema([
-          { name: 'Home', url: 'https://automationconsultingservices.org/' },
-          { name: 'CRM', url: 'https://automationconsultingservices.org/crm' },
-          { name: 'Compare', url: 'https://automationconsultingservices.org/crm/compare' },
+        { name: 'Home', url: 'https://www.automationconsultingservices.org/' },
+          { name: 'CRM', url: 'https://www.automationconsultingservices.org/crm' },
+          { name: 'Compare', url: 'https://www.automationconsultingservices.org/crm/compare' },
         ])}
       />
       <Header />
