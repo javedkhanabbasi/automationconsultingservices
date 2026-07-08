@@ -6,7 +6,7 @@ Next.js 14 site for automationconsultingservices.org with a complete Supabase-ba
 
 A complete CMS-powered marketing site:
 - **Public site** at `/` — homepage, services, CRM pages, case studies, blog, pricing, contact, FAQ, partners, tools
-- **Admin dashboard** at `/admin` — full content management for posts, case studies, services, pages, media, categories
+- **Admin dashboard** at `/acs-1000-admin` — full content management for posts, case studies, services, pages, media, categories
 
 Public pages read from Supabase. Admin pages write to Supabase. Real backend, real auth, real image uploads.
 
@@ -99,7 +99,7 @@ Open `http://localhost:3000/acs-1000-admin` — the admin dashboard (requires lo
 
 ### Write a blog post
 
-1. Go to `/admin/blog` → **+ New post**
+1. Go to `/acs-1000-admin/blog` → **+ New post**
 2. Fill in title (URL slug auto-generates)
 3. Write in the rich text editor — use H2/H3/H4 buttons for headings, upload images via toolbar
 4. Add excerpt, choose category, add tags
@@ -110,7 +110,7 @@ Open `http://localhost:3000/acs-1000-admin` — the admin dashboard (requires lo
 
 ### Add a case study
 
-1. Go to `/admin/case-studies` → **+ New case study**
+1. Go to `/acs-1000-admin/case-studies` → **+ New case study**
 2. Fill in title, industry, revenue, region, timeline, headline metric
 3. Add results (key/value pairs)
 4. Write Challenge, Solution, Outcome sections in the rich text editor
@@ -120,20 +120,20 @@ Open `http://localhost:3000/acs-1000-admin` — the admin dashboard (requires lo
 
 ### Edit a service page
 
-1. Go to `/admin/services` → click any service
+1. Go to `/acs-1000-admin/services` → click any service
 2. Update name, descriptions, features (one per line), workflow steps, FAQs
 3. Save changes
 
 ### Upload images
 
-1. Go to `/admin/media`
+1. Go to `/acs-1000-admin/media`
 2. Click **+ Upload files**
 3. Add alt text for each image
 4. Click **Copy URL** to use elsewhere
 
 ### Manage categories
 
-1. Go to `/admin/categories`
+1. Go to `/acs-1000-admin/categories`
 2. Add new categories at the top
 3. Edit names inline
 4. Delete with the Delete button
@@ -152,7 +152,7 @@ Open `http://localhost:3000/acs-1000-admin` — the admin dashboard (requires lo
 4. Click **Deploy**
 5. After deploy, point your domain `automationconsultingservices.org` at Vercel
 
-The admin dashboard at `yourdomain.com/admin` works the same as locally. The same email/password logs in.
+The admin dashboard at `yourdomain.com/acs-1000-admin` works the same as locally. The same email/password logs in.
 
 ---
 
@@ -186,7 +186,7 @@ Row Level Security: public reads only published rows. Authenticated admins can d
 
 ## Adding more admin users
 
-In Supabase Dashboard → Authentication → Users → Add User. New users can log in at `/admin/login` immediately.
+In Supabase Dashboard → Authentication → Users → Add User. New users can log in at `/acs-1000-admin/login` immediately.
 
 There is no signup flow on the public site — admin users are added by you.
 
@@ -205,3 +205,4 @@ There is no signup flow on the public site — admin users are added by you.
 ## License
 
 Proprietary. All rights reserved.
+
