@@ -91,7 +91,7 @@ npm run dev
 ```
 
 Open `http://localhost:3000` — the public site.
-Open `http://localhost:3000/admin` — the admin dashboard (requires login).
+Open `http://localhost:3000/acs-1000-admin` — the admin dashboard (requires login).
 
 ---
 
